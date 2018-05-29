@@ -1,0 +1,10 @@
+D:\!!Desktop\masterRad\igra\Igra\DAL\bin\Debug\DAL.dll.config
+D:\!!Desktop\masterRad\igra\Igra\DAL\bin\Debug\DAL.dll
+D:\!!Desktop\masterRad\igra\Igra\DAL\bin\Debug\DAL.pdb
+D:\!!Desktop\masterRad\igra\Igra\DAL\bin\Debug\EntityFramework.dll
+D:\!!Desktop\masterRad\igra\Igra\DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\!!Desktop\masterRad\igra\Igra\DAL\bin\Debug\EntityFramework.xml
+D:\!!Desktop\masterRad\igra\Igra\DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\!!Desktop\masterRad\igra\Igra\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+D:\!!Desktop\masterRad\igra\Igra\DAL\obj\Debug\DAL.dll
+D:\!!Desktop\masterRad\igra\Igra\DAL\obj\Debug\DAL.pdb
