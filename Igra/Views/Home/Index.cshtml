@@ -1,26 +1,107 @@
-﻿<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-        a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-        is an ideal platform for building RESTful applications on the .NET Framework.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301870">Learn more &raquo;</a></p>
+﻿<div id="body">
+
+    <h2>Knockout CRUD Operations with MVC4</h2>
+    @ViewBag.TotalStudents
+    <h3>List of Products</h3>
+    Today's message is: <span data-bind="text: Id"></span>
+    <table id="products1" data-bind="visible: Products().length > 0">
+        <thead>
+            <tr>
+                <th style="display: none;">ID</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: Products">
+            <tr>
+                <td data-bind="visible:false , text: Id "></td>
+                <td data-bind="text: Name"></td>
+                <td data-bind="text: Category"></td>
+                <td data-bind="text: formatCurrency(Price)"></td>
+
+                <td>
+                    <button data-bind="click: $root.edit">Edit</button>
+                    <button data-bind="click: $root.delete">Delete</button>
+
+                </td>
+
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6">
+                    <hr />
+                </td>
+            </tr>
+            <tr>
+                <td>Total :</td>
+                <td></td>
+                <td data-bind="text: formatCurrency($root.Total())"></td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
+    <br />
+    <div style="border-top: solid 2px #282828; width: 430px; height: 10px"> </div>
+
+    <div data-bind="if: Product">
+        <div>
+            <h2>Update Product</h2>
+        </div>
+        <div>
+            <label for="productId" data-bind="visible: false">ID</label>
+            <label data-bind="text: Product().Id, visible: false"></label>
+
+        </div>
+        <div>
+            <label for="name">Name</label>
+            <input data-bind="value: Product().Name" type="text" title="Name" />
+        </div>
+
+        <div>
+            <label for="category">Category</label>
+            <input data-bind="value: Product().Category" type="text" title="Category" />
+        </div>
+
+        <div>
+            <label for="price">Price</label>
+            <input data-bind="value: Product().Price" type="text" title="Price" />
+
+        </div>
+        <br />
+        <div>
+            <button data-bind="click: $root.update">Update</button>
+            <button data-bind="click: $root.cancel">Cancel</button>
+
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <button type="submit" onclick="UserAction()">Search</button>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
+
+    <div data-bind="ifnot: Product()">
+        <div>
+            <h2>Add New Product</h2>
+        </div>
+        <div>
+            <label for="name">Name</label>
+            <input data-bind="value: $root.Name" type="text" title="Name" />
+        </div>
+
+        <div>
+            <label for="category">Category</label>
+            <input data-bind="value: $root.Category" type="text" title="Category" />
+        </div>
+
+        <div>
+            <label for="price">Price</label>
+            <input data-bind="value: $root.Price" type="text" title="Price" />
+        </div>
+        <br />
+        <div>
+            <button data-bind="click: $root.create">Save</button>
+            <button data-bind="click: $root.reset">Reset</button>
+
+        </div>
     </div>
 </div>
 <script>

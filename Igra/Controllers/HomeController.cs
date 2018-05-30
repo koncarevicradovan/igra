@@ -15,6 +15,7 @@ namespace Igra.Controllers
         {
             ViewBag.Title = "Home Page";
             int a = db.Users.Count();
+            ViewBag.TotalStudents = Session["ads"];
             //db.Users.Add(new GamingUser
             //{
             //    Id = 1,
