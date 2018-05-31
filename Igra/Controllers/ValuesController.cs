@@ -26,7 +26,8 @@ namespace Igra.Controllers
         }
 
         // POST api/values
-        public void Post([FromBody]string value)
+        [HttpPost]
+        public void Post(string value)
         {
         }
 

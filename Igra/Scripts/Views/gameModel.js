@@ -1,11 +1,16 @@
-﻿function formatCurrency(value) {
-    return "₹ " + value.toFixed(2);
-}
+﻿function GameModel() {
 
-function ProductViewModel() {
+  //Make the self as 'this' reference
+  var self = this;
+  var serverProxy = new GameServerProxy();
+  // login form
+  self.login = function () {
+    serverProxy.callLogin(self.username(), self.password());
+  };
 
-    //Make the self as 'this' reference
-    var self = this;
+  self.username = ko.observable("");
+  self.password = ko.observable("");
+
     //Declare observable which will be bind with UI
     self.Id = ko.observable("cao");
     self.Name = ko.observable("");
@@ -129,6 +134,25 @@ function ProductViewModel() {
     self.cancel = function () {
         self.Product(null);
     }
+
+  // login and register form behaviour
+    $(function () {
+      $('#login-form-link').click(function (e) {
+        $("#login-form").delay(100).fadeIn(100);
+        $("#register-form").fadeOut(100);
+        $('#register-form-link').removeClass('active');
+        $(this).addClass('active');
+        e.preventDefault();
+      });
+      $('#register-form-link').click(function (e) {
+        $("#register-form").delay(100).fadeIn(100);
+        $("#login-form").fadeOut(100);
+        $('#login-form-link').removeClass('active');
+        $(this).addClass('active');
+        e.preventDefault();
+      });
+
+    });
 }
-var viewModel = new ProductViewModel();
+var viewModel = new GameModel();
 ko.applyBindings(viewModel);
