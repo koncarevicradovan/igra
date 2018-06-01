@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Igra.DAL;
+using Igra.VM;
 
 namespace Igra.Controllers
 {
@@ -27,8 +28,9 @@ namespace Igra.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post(string value)
+        public void Post([FromBody]LoginRequest loginRequest)
         {
+           
         }
 
         // PUT api/values/5

@@ -11,6 +11,7 @@ namespace Igra.Controllers
     {
         private IgraContext db = new IgraContext();
 
+        [CheckLoginFilter]
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";

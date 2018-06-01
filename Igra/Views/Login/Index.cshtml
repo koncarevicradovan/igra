@@ -159,23 +159,23 @@
                                     </div>
                                 </div>
                             </form>
-                            <form id="register-form" action="https://phpoll.com/register/process" method="post" role="form" style="display: none;">
+                            <form id="register-form" method="post" role="form" style="display: none;">
                                 <div class="form-group">
-                                    <input type="text" name="username" id="usernameRegister" tabindex="1" class="form-control" placeholder="Username" value="">
+                                    <input type="text" name="username" data-bind="value: usernameRegister" id="usernameRegister" tabindex="1" class="form-control" placeholder="Korisničko ime">
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+                                    <input type="password" name="password" data-bind="value: passwordRegister" id="passwordRegister" tabindex="2" class="form-control" placeholder="Šifra">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="password" id="passwordRegister" tabindex="2" class="form-control" placeholder="Password">
+                                    <input type="email" name="email" data-bind="value: nameRegister" id="email" tabindex="1" class="form-control" placeholder="Ime">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+                                    <input type="email2" name="email2" data-bind="value: lastnameRegister" id="email2" tabindex="1" class="form-control" placeholder="Prezime">
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
-                                            <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                                            <input type="submit" data-bind="click: register" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Registruj se">
                                         </div>
                                     </div>
                                 </div>
@@ -187,25 +187,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    //$(function () {
-
-    //    $('#login-form-link').click(function (e) {
-    //        $("#login-form").delay(100).fadeIn(100);
-    //        $("#register-form").fadeOut(100);
-    //        $('#register-form-link').removeClass('active');
-    //        $(this).addClass('active');
-    //        e.preventDefault();
-    //    });
-    //    $('#register-form-link').click(function (e) {
-    //        $("#register-form").delay(100).fadeIn(100);
-    //        $("#login-form").fadeOut(100);
-    //        $('#login-form-link').removeClass('active');
-    //        $(this).addClass('active');
-    //        e.preventDefault();
-    //    });
-
-    //});
-
-</script>

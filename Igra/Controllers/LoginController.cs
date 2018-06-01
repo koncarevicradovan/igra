@@ -11,8 +11,15 @@ namespace Igra.Controllers
         // GET: Login
         public ActionResult Index()
         {
-            Session["ads"] = 1;
             return View();
         }
+
+        public ActionResult Logout()
+        {
+            Session["username"] = string.Empty;
+            return View("Index");
+        }
+
+
     }
 }

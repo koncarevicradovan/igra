@@ -4,53 +4,43 @@ function GameServerProxy() {
   var self = this;
 
 
-  self.callLogin = function(username, password) {
-    //$.post("/api/values",
-    //  {
-    //    value: username,
-    //    //city: "Duckburg"
-    //  },
-    //  function (data, status) {
-    //    alert("Data: " + data + "\nStatus: " + status);
-    //  });
-
-    //$.ajax({
-    //  url: '/api/values',
-    //  cache: false,
-    //  type: 'POST',
-    //  contentType: 'application/json; charset=utf-8',
-    //  data: {
-    //    value: username
-    //  },
-    //  success: function (data) {
-    //    alert('ok');
-    //  }
-    //})
+  self.callLogin = function (username, password, callback) {
 
     $.ajax({
-
-      url: '/api/values',
-
+      url: '/api/loginapi/login',
       type: 'POST',
-
       dataType: 'json',
-
       data: {
-        value: username
+        username: username,
+        password: password
       },
-
       success: function (data, textStatus, xhr) {
-
-        console.log(data);
-
+        callback(textStatus);
       },
-
       error: function (xhr, textStatus, errorThrown) {
-
-        console.log('Error in Operation');
-
+        callback(textStatus, xhr.responseJSON);
       }
+    });
+  };
 
+  self.registerCall = function (username, password, firstname, lastname, callback) {
+
+    $.ajax({
+      url: '/api/loginapi/register',
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        username: username,
+        password: password,
+        firstname: firstname,
+        lastname: lastname
+      },
+      success: function (data, textStatus, xhr) {
+        callback(textStatus);
+      },
+      error: function (xhr, textStatus, errorThrown) {
+        callback(textStatus, xhr.responseJSON);
+      }
     });
   };
 }

@@ -3,13 +3,40 @@
   //Make the self as 'this' reference
   var self = this;
   var serverProxy = new GameServerProxy();
+
   // login form
   self.login = function () {
-    serverProxy.callLogin(self.username(), self.password());
+    var callback = function (serverResponse, message) {
+      if (serverResponse == 'success') {
+        toastr.success("Uspešno ste se ulogovali.");
+        window.location.href = "/home";
+      } else {
+        toastr.error(message);
+      }
+    };
+    serverProxy.callLogin(self.username(), self.password(), callback);
   };
 
   self.username = ko.observable("");
   self.password = ko.observable("");
+
+  self.register = function () {
+    var callback = function (serverResponse, message) {
+      if (serverResponse == 'success') {
+        toastr.success("Uspešno ste se registrovali.");
+        window.location.href = "/home";
+      } else {
+        toastr.error(message);
+      }
+    };
+    serverProxy.registerCall(self.usernameRegister(), self.passwordRegister(), self.nameRegister(), self.lastnameRegister(), callback);
+  };
+
+  self.usernameRegister = ko.observable("");
+  self.passwordRegister = ko.observable("");
+  self.nameRegister = ko.observable("");
+  self.lastnameRegister = ko.observable("");
+
 
     //Declare observable which will be bind with UI
     self.Id = ko.observable("cao");
@@ -26,18 +53,7 @@
 
     self.Product = ko.observable();
     self.Products = ko.observableArray(); // Contains the list of products
-
-    // Initialize the view-model
-    $.ajax({
-        url: 'Product/GetAllProducts',
-        cache: false,
-        type: 'GET',
-        contentType: 'application/json; charset=utf-8',
-        data: {},
-        success: function (data) {
-            self.Products(data); //Put the response in ObservableArray
-        }
-    });
+  
 
     // Calculate Total of Price After Initialization
     self.Total = ko.computed(function () {
