@@ -235,6 +235,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GameController.cs" />
+    <Compile Include="DAL\ReadyForGame.cs" />
     <Compile Include="Filter\CheckLoginFilterAttribute.cs" />
     <Compile Include="Controllers\LoginApiController.cs" />
     <Compile Include="Controllers\TutorialController.cs" />
@@ -246,6 +247,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805291615118_InitialCreate.cs" />
+    <Compile Include="Migrations\201805291615118_InitialCreate.Designer.cs">
+      <DependentUpon>201805291615118_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806052146413_Add is female flag.cs" />
+    <Compile Include="Migrations\201806052146413_Add is female flag.Designer.cs">
+      <DependentUpon>201806052146413_Add is female flag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -338,6 +348,14 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201805291615118_InitialCreate.resx">
+      <DependentUpon>201805291615118_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806052146413_Add is female flag.resx">
+      <DependentUpon>201806052146413_Add is female flag.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

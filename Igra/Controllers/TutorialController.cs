@@ -15,8 +15,6 @@ namespace Igra.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "Tutorial strana";
-            int a = db.Users.Count();
-            ViewBag.TotalStudents = Session["ads"];
             return View();
         }
     }

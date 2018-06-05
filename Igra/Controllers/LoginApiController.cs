@@ -32,16 +32,17 @@ namespace Igra.Controllers
 
         [HttpPost, Route("register")]
         //[Route("register")]
-        public IHttpActionResult Register([FromBody]RegisterRequest loginRequest)
+        public IHttpActionResult Register([FromBody]RegisterRequest registerRequest)
         {
             try
             {
                 GamingUser user = new GamingUser
                 {
-                    FirstName = loginRequest.FirstName,
-                    LastName = loginRequest.LastName,
-                    Password = loginRequest.Password,
-                    Username = loginRequest.Username
+                    FirstName = registerRequest.FirstName,
+                    LastName = registerRequest.LastName,
+                    Password = registerRequest.Password,
+                    Username = registerRequest.Username,
+                    IsFemale = registerRequest.IsFemale
                 };
                 db.Users.Add(user);
                 db.SaveChanges();

@@ -23,8 +23,8 @@ function GameServerProxy() {
     });
   };
 
-  self.registerCall = function (username, password, firstname, lastname, callback) {
-
+  self.registerCall = function (username, password, firstname, lastname, gender, callback) {
+    var isFemale = gender == 'female';
     $.ajax({
       url: '/api/loginapi/register',
       type: 'POST',
@@ -33,7 +33,8 @@ function GameServerProxy() {
         username: username,
         password: password,
         firstname: firstname,
-        lastname: lastname
+        lastname: lastname,
+        isFemale: isFemale
       },
       success: function (data, textStatus, xhr) {
         callback(textStatus);

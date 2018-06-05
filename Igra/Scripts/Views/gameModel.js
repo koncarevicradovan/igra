@@ -29,13 +29,21 @@
         toastr.error(message);
       }
     };
-    serverProxy.registerCall(self.usernameRegister(), self.passwordRegister(), self.nameRegister(), self.lastnameRegister(), callback);
+    serverProxy.registerCall(self.usernameRegister(), self.passwordRegister(), self.nameRegister(), self.lastnameRegister(), self.gender(), callback);
   };
 
   self.usernameRegister = ko.observable("");
   self.passwordRegister = ko.observable("");
   self.nameRegister = ko.observable("");
   self.lastnameRegister = ko.observable("");
+  self.gender = ko.observable("male");
+
+
+  // tutorial
+  self.gotoGame = function () {
+    window.location.href = "/game";
+  };
+  
 
 
     //Declare observable which will be bind with UI

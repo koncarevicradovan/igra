@@ -9,6 +9,7 @@ namespace Igra.Controllers
     public class GameController : Controller
     {
         // GET: Game
+        [CheckLoginFilter]
         public ActionResult Index()
         {
             return View();

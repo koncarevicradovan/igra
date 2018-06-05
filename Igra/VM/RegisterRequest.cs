@@ -11,6 +11,6 @@ namespace Igra.VM
         public string Password { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-
+        public bool IsFemale { get; set; }
     }
 }
