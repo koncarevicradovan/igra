@@ -9,7 +9,7 @@
     var callback = function (serverResponse, message) {
       if (serverResponse == 'success') {
         toastr.success("Uspešno ste se ulogovali.");
-        window.location.href = "/home";
+        window.location.href = "/tutorial";
       } else {
         toastr.error(message);
       }
@@ -24,7 +24,7 @@
     var callback = function (serverResponse, message) {
       if (serverResponse == 'success') {
         toastr.success("Uspešno ste se registrovali.");
-        window.location.href = "/home";
+        window.location.href = "/tutorial";
       } else {
         toastr.error(message);
       }

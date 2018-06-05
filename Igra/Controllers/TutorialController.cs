@@ -7,26 +7,16 @@ using Igra.DAL;
 
 namespace Igra.Controllers
 {
-    public class HomeController : Controller
+    public class TutorialController : Controller
     {
         private IgraContext db = new IgraContext();
 
         [CheckLoginFilter]
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            ViewBag.Title = "Tutorial strana";
             int a = db.Users.Count();
             ViewBag.TotalStudents = Session["ads"];
-            //db.Users.Add(new GamingUser
-            //{
-            //    Id = 1,
-            //    Username = "Julija",
-            //    Password = "2204",
-            //    FirstName = "Julija",
-            //    LastName = "Stefanovic"
-            //});
-            //db.SaveChanges();
-            //a = db.Users.Count();
             return View();
         }
     }
