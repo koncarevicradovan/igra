@@ -43,5 +43,18 @@ function GameServerProxy() {
         callback(textStatus, xhr.responseJSON);
       }
     });
+  }
+    self.checkForOpponent = function (callback) {
+      $.ajax({
+        url: '/api/gameapi/checkForOpponent',
+        type: 'POST',
+        dataType: 'json',
+        success: function (data, textStatus, xhr) {
+          callback(textStatus);
+        },
+        error: function (xhr, textStatus, errorThrown) {
+          callback(textStatus, xhr.responseJSON);
+        }
+      });
   };
 }

@@ -1,1 +1,20 @@
-﻿@ViewBag.KojeTu
+﻿
+<style>
+    body {
+        padding-top: 90px;
+    }
+    </style>
+<div class="container">
+    <div class="row">
+        <button data-bind="click: checkForOpponent()"  ></button>
+
+        <div data-bind="if: !isGameStarted">
+            <div class="loader centered"></div>
+            <span class="centered" style="font-size: large;">Čekanje na protivnika...</span>
+        </div>
+        <div data-bind="if: isGameStarted">
+            <button data-bind="click: playCard(1)" ></button>
+            <button data-bind="click: playCard(2)" ></button>
+        </div>
+    </div>
+</div>

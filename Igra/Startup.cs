@@ -12,6 +12,8 @@ namespace Igra
     {
         public void Configuration(IAppBuilder app)
         {
+            app.MapSignalR();
+
             ConfigureAuth(app);
         }
     }
