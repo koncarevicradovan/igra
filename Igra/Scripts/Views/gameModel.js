@@ -5,6 +5,15 @@
   var serverProxy = new GameServerProxy();
 
   // login form
+
+  self.username = ko.observable("");
+  self.password = ko.observable("");
+  self.usernameRegister = ko.observable("");
+  self.passwordRegister = ko.observable("");
+  self.nameRegister = ko.observable("");
+  self.lastnameRegister = ko.observable("");
+  self.gender = ko.observable("male");
+
   self.login = function () {
     var callback = function (serverResponse, message) {
       if (serverResponse == 'success') {
@@ -18,9 +27,6 @@
     serverProxy.callLogin(self.username(), self.password(), callback);
   };
 
-  self.username = ko.observable("");
-  self.password = ko.observable("");
-
   self.register = function () {
     var callback = function (serverResponse, message) {
       if (serverResponse == 'success') {
@@ -33,12 +39,9 @@
     serverProxy.registerCall(self.usernameRegister(), self.passwordRegister(), self.nameRegister(), self.lastnameRegister(), self.gender(), callback);
   };
 
-  self.usernameRegister = ko.observable("");
-  self.passwordRegister = ko.observable("");
-  self.nameRegister = ko.observable("");
-  self.lastnameRegister = ko.observable("");
-  self.gender = ko.observable("male");
-
+  self.clearLocalStorage = function () {
+    localStorage.clear();
+  };
 
   // tutorial
   self.gotoGame = function () {
@@ -49,6 +52,7 @@
   self.gameNumber = ko.observable(0);
   self.displayLoader = ko.observable(false);
 
+  // uspostavljanje igre
   self.checkForOpponent = function () {
     var callback = function (serverResponse, gameId) {
       if (serverResponse == 'success') {
@@ -64,20 +68,26 @@
     }
   };
 
-  self.clearLocalStorage = function () {
-    localStorage.clear();
+  $.connection.tasks.client.tellOpponentThatGameIsCreated = function (receiver, gameId) {
+    if (receiver == localStorage.getItem("username")) {
+      localStorage.setItem("gameId", gameId);
+      self.isGameStarted = true;
+      self.gameNumber(1);
+    }
   };
 
+  // igra 1
+
   self.opponentName = ko.observable('');
-  self.opponentPoints = ko.observable(0);
-  self.myPoints = ko.observable(0);
+  self.opponentPoints1 = ko.observable(0);
+  self.myPoints1 = ko.observable(0);
 
   var playCard1 = function (cardNumber) {
     var callback = function (serverResponse, opponentName, opponentPoints, myPoints) {
       if (serverResponse == 'success') {
         self.opponentName(opponentName);
-        self.opponentPoints(opponentPoints);
-        self.myPoints(myPoints);
+        self.opponentPoints1(opponentPoints);
+        self.myPoints1(myPoints);
         self.displayLoader(false);
         self.gameNumber(2);
       } else {
@@ -85,6 +95,16 @@
       }
     };
     serverProxy.playCard1(localStorage.getItem("gameId"), cardNumber, callback);
+  };
+
+  $.connection.tasks.client.opponentPlayed1 = function (receiver, opponentName, opponentPoints, myPoints) {
+    if (receiver == localStorage.getItem("username")) {
+      self.opponentName(opponentName);
+      self.opponentPoints1(opponentPoints);
+      self.myPoints1(myPoints);
+      self.displayLoader(false);
+      self.gameNumber(2);
+    }
   };
 
   self.playCard11 = function () {
@@ -95,11 +115,18 @@
     playCard1(2);
   };
 
+  // igra 2
+  self.opponentPoints2 = ko.observable(0);
+  self.myPoints2 = ko.observable(0);
+
   var playCard2 = function (cardNumber) {
-    var callback = function (serverResponse, message) {
+    var callback = function (serverResponse, opponentName, opponentPoints, myPoints) {
       if (serverResponse == 'success') {
+        self.opponentName(opponentName);
+        self.opponentPoints2(opponentPoints);
+        self.myPoints2(myPoints);
         self.displayLoader(false);
-        self.gameNumber(2);
+        self.gameNumber(3);
       } else {
         self.displayLoader(true);
       }
@@ -115,11 +142,28 @@
     playCard2(2);
   };
 
+  $.connection.tasks.client.opponentPlayed2 = function (receiver, opponentName, opponentPoints, myPoints) {
+    if (receiver == localStorage.getItem("username")) {
+      self.opponentName(opponentName);
+      self.opponentPoints2(opponentPoints);
+      self.myPoints2(myPoints);
+      self.displayLoader(false);
+      self.gameNumber(3);
+    }
+  };
+
+  // igra 3
+  self.opponentPoints3 = ko.observable(0);
+  self.myPoints3 = ko.observable(0);
+
   var playCard3 = function (cardNumber) {
-    var callback = function (serverResponse, message) {
+    var callback = function (serverResponse, opponentName, opponentPoints, myPoints) {
       if (serverResponse == 'success') {
+        self.opponentName(opponentName);
+        self.opponentPoints3(opponentPoints);
+        self.myPoints3(myPoints);
         self.displayLoader(false);
-        self.gameNumber(2);
+        self.gameNumber(5);
       } else {
         self.displayLoader(true);
       }
@@ -135,11 +179,28 @@
     playCard3(2);
   };
 
+  $.connection.tasks.client.opponentPlayed3 = function (receiver, opponentName, opponentPoints, myPoints) {
+    if (receiver == localStorage.getItem("username")) {
+      self.opponentName(opponentName);
+      self.opponentPoints3(opponentPoints);
+      self.myPoints3(myPoints);
+      self.displayLoader(false);
+      self.gameNumber(5);
+    }
+  };
+
+  // igra 4
+  self.opponentPoints4 = ko.observable(0);
+  self.myPoints4 = ko.observable(0);
+
   var playCard4 = function (cardNumber) {
-    var callback = function (serverResponse, message) {
+    var callback = function (serverResponse, opponentName, opponentPoints, myPoints) {
       if (serverResponse == 'success') {
+        self.opponentName(opponentName);
+        self.opponentPoints4(opponentPoints);
+        self.myPoints4(myPoints);
         self.displayLoader(false);
-        self.gameNumber(2);
+        self.gameNumber(5);
       } else {
         self.displayLoader(true);
       }
@@ -154,113 +215,16 @@
   self.playCard42 = function () {
     playCard4(2);
   };
-  
-  $.connection.tasks.client.tellOpponentThatGameIsCreated = function (receiver, gameId) {
-    if (receiver == localStorage.getItem("username")) {
-      localStorage.setItem("gameId", gameId);
-      self.isGameStarted = true;
-      self.gameNumber(1);
-    }
-  };
 
-  $.connection.tasks.client.opponentPlayed1 = function (receiver, opponentName, opponentPoints, myPoints) {
+  $.connection.tasks.client.opponentPlayed4 = function (receiver, opponentName, opponentPoints, myPoints) {
     if (receiver == localStorage.getItem("username")) {
       self.opponentName(opponentName);
-      self.opponentPoints(opponentPoints);
-      self.myPoints(myPoints);
+      self.opponentPoints4(opponentPoints);
+      self.myPoints4(myPoints);
       self.displayLoader(false);
-      self.gameNumber(2);
+      self.gameNumber(5);
     }
   };
-
-  //Declare observable which will be bind with UI
-  self.Id = ko.observable("cao");
-
-  //Add New Item
-  self.create = function () {
-    if (Product.Name() != "" &&
-      Product.Price() != "" && Product.Category() != "") {
-      $.ajax({
-        url: 'Product/AddProduct',
-        cache: false,
-        type: 'POST',
-        contentType: 'application/json; charset=utf-8',
-        data: ko.toJSON(Product),
-        success: function (data) {
-          self.Products.push(data);
-          self.Name("");
-          self.Price("");
-          self.Category("");
-        }
-      }).fail(
-        function (xhr, textStatus, err) {
-          alert(err);
-        });
-    }
-    else {
-      alert('Please Enter All the Values !!');
-    }
-  }
-  // Delete product details
-  self.delete = function (Product) {
-    if (confirm('Are you sure to Delete "' + Product.Name + '" product ??')) {
-      var id = Product.Id;
-
-      $.ajax({
-        url: 'Product/DeleteProduct/' + id,
-        cache: false,
-        type: 'POST',
-        contentType: 'application/json; charset=utf-8',
-        data: id,
-        success: function (data) {
-          self.Products.remove(Product);
-        }
-      }).fail(
-        function (xhr, textStatus, err) {
-          self.status(err);
-        });
-    }
-  }
-
-  // Edit product details
-  self.edit = function (Product) {
-    self.Product(Product);
-  }
-
-  // Update product details
-  self.update = function () {
-    var Product = self.Product();
-
-    $.ajax({
-      url: 'Product/EditProduct',
-      cache: false,
-      type: 'PUT',
-      contentType: 'application/json; charset=utf-8',
-      data: ko.toJSON(Product),
-      success: function (data) {
-        self.Products.removeAll();
-        self.Products(data); //Put the response in ObservableArray
-        self.Product(null);
-        alert("Record Updated Successfully");
-      }
-    })
-      .fail(
-      function (xhr, textStatus, err) {
-        alert(err);
-      });
-  }
-
-  // Reset product details
-  self.reset = function () {
-    self.Name("");
-    self.Price("");
-    self.Category("");
-  }
-
-  // Cancel product details
-  self.cancel = function () {
-    self.Product(null);
-  }
 
   // login and register form behaviour
   $(function () {

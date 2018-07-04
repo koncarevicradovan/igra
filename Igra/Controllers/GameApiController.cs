@@ -151,5 +151,202 @@ namespace Igra.Controllers
                 }
             }
         }
+
+        [HttpPost, Route("playCard2")]
+        public IHttpActionResult PlayCard2([FromBody]PlayCardRequest request)
+        {
+            string username = (string)HttpContext.Current.Session["username"];
+            Game currentGame = db.Games.FirstOrDefault(x => x.Id == request.GameId);
+            // ako sam prvi igrac
+            if (currentGame.Player1 == username)
+            {
+                if (request.CardNumber == 1)
+                {
+                    currentGame.Player1Game2Points += 5;
+                }
+                else
+                {
+                    currentGame.Player2Game2Points += 10;
+                }
+                currentGame.Player1Game2Played = true;
+                db.SaveChanges();
+                if (currentGame.Player2Game2Played)
+                {
+                    var context = GlobalHost.ConnectionManager.GetHubContext<Tasks>();
+                    context.Clients.All.opponentPlayed2(currentGame.Player2, currentGame.Player1, currentGame.Player1Game2Points, currentGame.Player2Game2Points);
+                    PlayCardResponse response = new PlayCardResponse
+                    {
+                        OpponentName = currentGame.Player1,
+                        OpponentPoints = currentGame.Player1Game2Points,
+                        MyPoints = currentGame.Player2Game2Points
+                    };
+                    return Ok(response);
+                }
+                else
+                {
+                    return Content(HttpStatusCode.BadRequest, "Cekanje na drugog igraca da odigra...");
+                }
+
+            }
+            else
+            // ako sam drugi igrac
+            {
+                if (request.CardNumber == 1)
+                {
+                    currentGame.Player2Game2Points += 5;
+                }
+                else
+                {
+                    currentGame.Player1Game2Points += 10;
+                }
+                currentGame.Player2Game2Played = true;
+                db.SaveChanges();
+                if (currentGame.Player1Game2Played)
+                {
+                    var context = GlobalHost.ConnectionManager.GetHubContext<Tasks>();
+                    context.Clients.All.opponentPlayed2(currentGame.Player1, currentGame.Player2, currentGame.Player2Game2Points, currentGame.Player1Game2Points);
+                    PlayCardResponse response = new PlayCardResponse
+                    {
+                        OpponentName = currentGame.Player1,
+                        OpponentPoints = currentGame.Player1Game2Points,
+                        MyPoints = currentGame.Player2Game2Points
+                    };
+                    return Ok(response);
+                }
+                else
+                {
+                    return Content(HttpStatusCode.BadRequest, "Cekanje na drugog igraca da odigra...");
+                }
+            }
+        }
+
+        [HttpPost, Route("playCard3")]
+        public IHttpActionResult PlayCard3([FromBody]PlayCardRequest request)
+        {
+            string username = (string)HttpContext.Current.Session["username"];
+            Game currentGame = db.Games.FirstOrDefault(x => x.Id == request.GameId);
+            // ako sam prvi igrac
+            if (currentGame.Player1 == username)
+            {
+                if (request.CardNumber == 2)
+                {
+                    currentGame.Player2Game3Points += 10;
+                }
+                currentGame.Player1Game3Played = true;
+                db.SaveChanges();
+                if (currentGame.Player2Game3Played)
+                {
+                    var context = GlobalHost.ConnectionManager.GetHubContext<Tasks>();
+                    context.Clients.All.opponentPlayed3(currentGame.Player2, currentGame.Player1, currentGame.Player1Game3Points, currentGame.Player2Game3Points);
+                    PlayCardResponse response = new PlayCardResponse
+                    {
+                        OpponentName = currentGame.Player1,
+                        OpponentPoints = currentGame.Player1Game3Points,
+                        MyPoints = currentGame.Player2Game3Points
+                    };
+                    return Ok(response);
+                }
+                else
+                {
+                    return Content(HttpStatusCode.BadRequest, "Cekanje na drugog igraca da odigra...");
+                }
+
+            }
+            else
+            // ako sam drugi igrac
+            {
+                if (request.CardNumber == 2)
+                {
+                    currentGame.Player1Game3Points += 10;
+
+                }
+                currentGame.Player2Game3Played = true;
+                db.SaveChanges();
+                if (currentGame.Player1Game3Played)
+                {
+                    var context = GlobalHost.ConnectionManager.GetHubContext<Tasks>();
+                    context.Clients.All.opponentPlayed3(currentGame.Player1, currentGame.Player2, currentGame.Player2Game3Points, currentGame.Player1Game3Points);
+                    PlayCardResponse response = new PlayCardResponse
+                    {
+                        OpponentName = currentGame.Player1,
+                        OpponentPoints = currentGame.Player1Game3Points,
+                        MyPoints = currentGame.Player2Game3Points
+                    };
+                    return Ok(response);
+                }
+                else
+                {
+                    return Content(HttpStatusCode.BadRequest, "Cekanje na drugog igraca da odigra...");
+                }
+            }
+        }
+
+        [HttpPost, Route("playCard4")]
+        public IHttpActionResult PlayCard4([FromBody]PlayCardRequest request)
+        {
+            string username = (string)HttpContext.Current.Session["username"];
+            Game currentGame = db.Games.FirstOrDefault(x => x.Id == request.GameId);
+            // ako sam prvi igrac
+            if (currentGame.Player1 == username)
+            {
+                if (request.CardNumber == 1)
+                {
+                    currentGame.Player1Game4Points += 5;
+                }
+                else
+                {
+                    currentGame.Player2Game4Points += 10;
+                }
+                currentGame.Player1Game4Played = true;
+                db.SaveChanges();
+                if (currentGame.Player2Game4Played)
+                {
+                    var context = GlobalHost.ConnectionManager.GetHubContext<Tasks>();
+                    context.Clients.All.opponentPlayed4(currentGame.Player2, currentGame.Player1, currentGame.Player1Game4Points, currentGame.Player2Game4Points);
+                    PlayCardResponse response = new PlayCardResponse
+                    {
+                        OpponentName = currentGame.Player1,
+                        OpponentPoints = currentGame.Player1Game4Points,
+                        MyPoints = currentGame.Player2Game4Points
+                    };
+                    return Ok(response);
+                }
+                else
+                {
+                    return Content(HttpStatusCode.BadRequest, "Cekanje na drugog igraca da odigra...");
+                }
+
+            }
+            else
+            // ako sam drugi igrac
+            {
+                if (request.CardNumber == 1)
+                {
+                    currentGame.Player2Game4Points += 5;
+                }
+                else
+                {
+                    currentGame.Player1Game4Points += 10;
+                }
+                currentGame.Player2Game4Played = true;
+                db.SaveChanges();
+                if (currentGame.Player1Game4Played)
+                {
+                    var context = GlobalHost.ConnectionManager.GetHubContext<Tasks>();
+                    context.Clients.All.opponentPlayed4(currentGame.Player1, currentGame.Player2, currentGame.Player2Game4Points, currentGame.Player1Game4Points);
+                    PlayCardResponse response = new PlayCardResponse
+                    {
+                        OpponentName = currentGame.Player1,
+                        OpponentPoints = currentGame.Player1Game4Points,
+                        MyPoints = currentGame.Player2Game4Points
+                    };
+                    return Ok(response);
+                }
+                else
+                {
+                    return Content(HttpStatusCode.BadRequest, "Cekanje na drugog igraca da odigra...");
+                }
+            }
+        }
     }
 }

@@ -77,13 +77,60 @@ function GameServerProxy() {
     };
 
     self.playCard2 = function (gameId, cardNumber, callback) {
-     // todo
+      $.ajax({
+        url: '/api/gameapi/playCard2',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          gameId: gameId,
+          cardNumber: cardNumber
+        },
+        success: function (data, textStatus, xhr) {
+          alert(data);
+          callback(textStatus, data.OpponentName, data.OpponentPoints, data.MyPoints);
+        },
+        error: function (xhr, textStatus, errorThrown) {
+          callback(textStatus, xhr.responseJSON);
+        }
+      });
     };
+
     self.playCard3 = function (gameId, cardNumber, callback) {
-      // todo
+      $.ajax({
+        url: '/api/gameapi/playCard3',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          gameId: gameId,
+          cardNumber: cardNumber
+        },
+        success: function (data, textStatus, xhr) {
+          alert(data);
+          callback(textStatus, data.OpponentName, data.OpponentPoints, data.MyPoints);
+        },
+        error: function (xhr, textStatus, errorThrown) {
+          callback(textStatus, xhr.responseJSON);
+        }
+      });
     };
+
     self.playCard4 = function (gameId, cardNumber, callback) {
-      // todo
+      $.ajax({
+        url: '/api/gameapi/playCard4',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          gameId: gameId,
+          cardNumber: cardNumber
+        },
+        success: function (data, textStatus, xhr) {
+          alert(data);
+          callback(textStatus, data.OpponentName, data.OpponentPoints, data.MyPoints);
+        },
+        error: function (xhr, textStatus, errorThrown) {
+          callback(textStatus, xhr.responseJSON);
+        }
+      });
     };
   };
 }

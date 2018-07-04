@@ -22,21 +22,56 @@
         <!-- ko if: gameNumber() == 2 -->
         <div>
             Ime protivnika: <span data-bind="text: opponentName"></span>
-            Poeni protivnika: <span data-bind="text: opponentPoints"></span>
-            Moji poeni: <span data-bind="text: myPoints"></span>
+            Poeni protivnika 1: <span data-bind="text: opponentPoints1"></span>
+            Moji poeni 1: <span data-bind="text: myPoints1"></span>
 
             <button style="color:red" data-bind="click: playCard21">Karta 1</button>
             <button style="color:black" data-bind="click: playCard22">Karta 2</button>
         </div>
         <!-- /ko -->
-        <div data-bind="if: gameNumber() == 3">
+
+        <!-- ko if: gameNumber() == 3 -->
+        <div>
+            Ime protivnika: <span data-bind="text: opponentName"></span>
+            Poeni protivnika 1: <span data-bind="text: opponentPoints1"></span>
+            Moji poeni 1: <span data-bind="text: myPoints1"></span>
+            Poeni protivnika 2: <span data-bind="text: opponentPoints2"></span>
+            Moji poeni 2: <span data-bind="text: myPoints2"></span>
+
             <button style="color:red" data-bind="click: playCard31">Karta 1</button>
             <button style="color:black" data-bind="click: playCard32">Karta 2</button>
         </div>
+        <!-- /ko -->
+
+        <!-- ko if: gameNumber() == 4 -->
         <div data-bind="if: gameNumber() == 4">
+            Ime protivnika: <span data-bind="text: opponentName"></span>
+            Poeni protivnika 1: <span data-bind="text: opponentPoints1"></span>
+            Moji poeni 1: <span data-bind="text: myPoints1"></span>
+            Poeni protivnika 2: <span data-bind="text: opponentPoints2"></span>
+            Moji poeni 2: <span data-bind="text: myPoints2"></span>
+            Poeni protivnika 3: <span data-bind="text: opponentPoints2"></span>
+            Moji poeni 3: <span data-bind="text: myPoints2"></span>
+
             <button style="color:red" data-bind="click: playCard41">Karta 1</button>
             <button style="color:black" data-bind="click: playCard42">Karta 2</button>
         </div>
+        <!-- /ko -->
+
+        <!-- ko if: gameNumber() == 5 -->
+        <div data-bind="if: gameNumber() == 4">
+            Ime protivnika: <span data-bind="text: opponentName"></span>
+            Poeni protivnika 1: <span data-bind="text: opponentPoints1"></span>
+            Moji poeni 1: <span data-bind="text: myPoints1"></span>
+            Poeni protivnika 2: <span data-bind="text: opponentPoints2"></span>
+            Moji poeni 2: <span data-bind="text: myPoints2"></span>
+            Poeni protivnika 3: <span data-bind="text: opponentPoints2"></span>
+            Moji poeni 3: <span data-bind="text: myPoints2"></span>
+            Poeni protivnika 4: <span data-bind="text: opponentPoints4"></span>
+            Moji poeni 4: <span data-bind="text: myPoints4"></span>
+        </div>
+        <!-- /ko -->
+
         <span data-bind="text: gameNumber"></span>
     </div>
 </div>
