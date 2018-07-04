@@ -268,6 +268,14 @@
     <Compile Include="Migrations\201806091751063_Added GamingUser and REadyForGame.Designer.cs">
       <DependentUpon>201806091751063_Added GamingUser and REadyForGame.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807032221270_Change type of Player1 and Player2 in Games.cs" />
+    <Compile Include="Migrations\201807032221270_Change type of Player1 and Player2 in Games.Designer.cs">
+      <DependentUpon>201807032221270_Change type of Player1 and Player2 in Games.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807041925575_Added is played flags to game.cs" />
+    <Compile Include="Migrations\201807041925575_Added is played flags to game.Designer.cs">
+      <DependentUpon>201807041925575_Added is played flags to game.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -277,6 +285,8 @@
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="VM\AppCache.cs" />
+    <Compile Include="VM\PlayCardResponse.cs" />
+    <Compile Include="VM\PlayCardRequest.cs" />
     <Compile Include="VM\RegisterRequest.cs" />
     <Compile Include="VM\LoginRequest.cs" />
   </ItemGroup>
@@ -376,6 +386,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806091751063_Added GamingUser and REadyForGame.resx">
       <DependentUpon>201806091751063_Added GamingUser and REadyForGame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807032221270_Change type of Player1 and Player2 in Games.resx">
+      <DependentUpon>201807032221270_Change type of Player1 and Player2 in Games.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807041925575_Added is played flags to game.resx">
+      <DependentUpon>201807041925575_Added is played flags to game.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

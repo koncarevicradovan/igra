@@ -8,13 +8,35 @@
     <div class="row">
         <button data-bind="click: checkForOpponent()"  ></button>
 
-        <div data-bind="if: !isGameStarted">
+        <div data-bind="if: gameNumber()==0 || displayLoader()">
             <div class="loader centered"></div>
             <span class="centered" style="font-size: large;">Čekanje na protivnika...</span>
         </div>
-        <div data-bind="if: isGameStarted">
-            <button data-bind="click: playCard(1)" ></button>
-            <button data-bind="click: playCard(2)" ></button>
+        <!-- ko if: gameNumber() == 1 -->
+        <div>
+            <button style="color:red" data-bind="click: playCard11">Karta 1</button>
+            <button style="color:black" data-bind="click: playCard12">Karta 2</button>
         </div>
+        <!-- /ko -->
+
+        <!-- ko if: gameNumber() == 2 -->
+        <div>
+            Ime protivnika: <span data-bind="text: opponentName"></span>
+            Poeni protivnika: <span data-bind="text: opponentPoints"></span>
+            Moji poeni: <span data-bind="text: myPoints"></span>
+
+            <button style="color:red" data-bind="click: playCard21">Karta 1</button>
+            <button style="color:black" data-bind="click: playCard22">Karta 2</button>
+        </div>
+        <!-- /ko -->
+        <div data-bind="if: gameNumber() == 3">
+            <button style="color:red" data-bind="click: playCard31">Karta 1</button>
+            <button style="color:black" data-bind="click: playCard32">Karta 2</button>
+        </div>
+        <div data-bind="if: gameNumber() == 4">
+            <button style="color:red" data-bind="click: playCard41">Karta 1</button>
+            <button style="color:black" data-bind="click: playCard42">Karta 2</button>
+        </div>
+        <span data-bind="text: gameNumber"></span>
     </div>
 </div>

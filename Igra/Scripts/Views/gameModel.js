@@ -45,34 +45,131 @@
     window.location.href = "/game";
   };
 
-  self.isGameStarted = ko.observable(false);
+  self.isGameStarted = false;
+  self.gameNumber = ko.observable(0);
+  self.displayLoader = ko.observable(false);
 
   self.checkForOpponent = function () {
-    var callback = function (serverResponse, message) {
+    var callback = function (serverResponse, gameId) {
       if (serverResponse == 'success') {
-        self.isGameStarted(true);
+        self.isGameStarted = true;
+        self.gameNumber(1);
+        localStorage.setItem("gameId", gameId);
       } else {
         //setTimeout(function () { self.checkForOpponent(); }, 2000);
       }
     };
-    serverProxy.checkForOpponent(callback);
-  };
-
-  self.playCard = function (cardNumber) {
-
-  };
-
-
-  $.connection.tasks.client.taskAdded = function (t, receiver) {
-    if (receiver == localStorage.getItem("username")) {
-      alert(t);
+    if (!self.isGameStarted) {
+      serverProxy.checkForOpponent(callback);
     }
   };
 
-  $.connection.tasks.client.tellOpponentThatGameIsCreated = function (opponent, receiver) {
+  self.clearLocalStorage = function () {
+    localStorage.clear();
+  };
+
+  self.opponentName = ko.observable('');
+  self.opponentPoints = ko.observable(0);
+  self.myPoints = ko.observable(0);
+
+  var playCard1 = function (cardNumber) {
+    var callback = function (serverResponse, opponentName, opponentPoints, myPoints) {
+      if (serverResponse == 'success') {
+        self.opponentName(opponentName);
+        self.opponentPoints(opponentPoints);
+        self.myPoints(myPoints);
+        self.displayLoader(false);
+        self.gameNumber(2);
+      } else {
+        self.displayLoader(true);
+      }
+    };
+    serverProxy.playCard1(localStorage.getItem("gameId"), cardNumber, callback);
+  };
+
+  self.playCard11 = function () {
+    playCard1(1);
+  };
+
+  self.playCard12 = function () {
+    playCard1(2);
+  };
+
+  var playCard2 = function (cardNumber) {
+    var callback = function (serverResponse, message) {
+      if (serverResponse == 'success') {
+        self.displayLoader(false);
+        self.gameNumber(2);
+      } else {
+        self.displayLoader(true);
+      }
+    };
+    serverProxy.playCard2(localStorage.getItem("gameId"), cardNumber, callback);
+  };
+
+  self.playCard21 = function () {
+    playCard2(1);
+  };
+
+  self.playCard22 = function () {
+    playCard2(2);
+  };
+
+  var playCard3 = function (cardNumber) {
+    var callback = function (serverResponse, message) {
+      if (serverResponse == 'success') {
+        self.displayLoader(false);
+        self.gameNumber(2);
+      } else {
+        self.displayLoader(true);
+      }
+    };
+    serverProxy.playCard3(localStorage.getItem("gameId"), cardNumber, callback);
+  };
+
+  self.playCard31 = function () {
+    playCard3(1);
+  };
+
+  self.playCard32 = function () {
+    playCard3(2);
+  };
+
+  var playCard4 = function (cardNumber) {
+    var callback = function (serverResponse, message) {
+      if (serverResponse == 'success') {
+        self.displayLoader(false);
+        self.gameNumber(2);
+      } else {
+        self.displayLoader(true);
+      }
+    };
+    serverProxy.playCard4(localStorage.getItem("gameId"), cardNumber, callback);
+  };
+
+  self.playCard41 = function () {
+    playCard4(1);
+  };
+
+  self.playCard42 = function () {
+    playCard4(2);
+  };
+  
+  $.connection.tasks.client.tellOpponentThatGameIsCreated = function (receiver, gameId) {
     if (receiver == localStorage.getItem("username")) {
-      localStorage.setItem("opponent", opponent);
-      self.isGameStarted(true);
+      localStorage.setItem("gameId", gameId);
+      self.isGameStarted = true;
+      self.gameNumber(1);
+    }
+  };
+
+  $.connection.tasks.client.opponentPlayed1 = function (receiver, opponentName, opponentPoints, myPoints) {
+    if (receiver == localStorage.getItem("username")) {
+      self.opponentName(opponentName);
+      self.opponentPoints(opponentPoints);
+      self.myPoints(myPoints);
+      self.displayLoader(false);
+      self.gameNumber(2);
     }
   };
 

@@ -43,18 +43,47 @@ function GameServerProxy() {
         callback(textStatus, xhr.responseJSON);
       }
     });
-  }
-    self.checkForOpponent = function (callback) {
+  };
+  self.checkForOpponent = function (callback) {
+    $.ajax({
+      url: '/api/gameapi/checkForOpponent',
+      type: 'POST',
+      dataType: 'json',
+      success: function (data, textStatus, xhr) {
+        callback(textStatus, data);
+      },
+      error: function (xhr, textStatus, errorThrown) {
+        callback(textStatus, xhr.responseJSON);
+      }
+    });
+
+    self.playCard1 = function (gameId, cardNumber, callback) {
       $.ajax({
-        url: '/api/gameapi/checkForOpponent',
+        url: '/api/gameapi/playCard1',
         type: 'POST',
         dataType: 'json',
+        data: {
+          gameId: gameId,
+          cardNumber: cardNumber
+        },
         success: function (data, textStatus, xhr) {
-          callback(textStatus);
+          alert(data);
+          callback(textStatus, data.OpponentName, data.OpponentPoints, data.MyPoints);
         },
         error: function (xhr, textStatus, errorThrown) {
           callback(textStatus, xhr.responseJSON);
         }
       });
+    };
+
+    self.playCard2 = function (gameId, cardNumber, callback) {
+     // todo
+    };
+    self.playCard3 = function (gameId, cardNumber, callback) {
+      // todo
+    };
+    self.playCard4 = function (gameId, cardNumber, callback) {
+      // todo
+    };
   };
 }
