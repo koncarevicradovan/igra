@@ -17,6 +17,8 @@
                             <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
                                 <span class="round-tab">
                                     I
+                                    @*<img style="background:white" src="~/Images/redCard.png" />
+                                    <img src="~/Images/blackCard.png" />*@
                                     @*<i class="glyphicon glyphicon-folder-open"></i>*@
                                 </span>
                             </a>
@@ -85,6 +87,37 @@
                 </form>
             </div>
         </section>
+        <h2>Rezultat</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Prva igra</th>
+                    <th scope="col">Druga igra</th>
+                    <th scope="col">Treća igra</th>
+                    <th scope="col">Četvrta igra</th>
+                    <th scope="col">Ukupno</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Igrač 1</th>
+                    <td class="rucnoCrtano">11</td>
+                    <td class="rucnoCrtano">12</td>
+                    <td class="rucnoCrtano">13</td>
+                    <td class="rucnoCrtano">14</td>
+                    <td class="rucnoCrtano">15</td>
+                </tr>
+                <tr>
+                    <th scope="row">Igrač 2</th>
+                    <td class="rucnoCrtano">21</td>
+                    <td class="rucnoCrtano">22</td>
+                    <td class="rucnoCrtano">23</td>
+                    <td class="rucnoCrtano">24</td>
+                    <td class="rucnoCrtano">25</td>
+                </tr>
+            </tbody>
+        </table>
         @*<button data-bind="click: checkForOpponent()"  ></button>
 
         <div data-bind="if: gameNumber()==0 || displayLoader()">

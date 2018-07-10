@@ -246,3 +246,14 @@ span.round-tab:hover {
         left: 35%;
     }
 }
+
+.slideTutorial {
+    width: 65%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.rucnoCrtano {
+    border: solid 2px white;
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+}

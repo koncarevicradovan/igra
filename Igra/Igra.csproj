@@ -298,11 +298,15 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\blackCard.png" />
+    <Content Include="Images\redCard.png" />
     <Content Include="Images\Slide1.JPG" />
     <Content Include="Images\Slide2.JPG" />
     <Content Include="Images\Slide3.JPG" />
     <Content Include="Images\Slide4.JPG" />
     <Content Include="Images\Slide5.JPG" />
+    <Content Include="Images\Slide6.JPG" />
+    <Content Include="Images\Slide7.JPG" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
