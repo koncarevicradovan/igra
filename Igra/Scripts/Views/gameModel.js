@@ -15,13 +15,15 @@
   self.gender = ko.observable("male");
 
   self.login = function () {
-    var callback = function (serverResponse, message) {
+    var callback = function (serverResponse, data) {
       if (serverResponse == 'success') {
         toastr.success("Uspešno ste se ulogovali.");
         localStorage.setItem("username", self.username());
+        localStorage.setItem("fullName", data);
+        self.myFullName(data);
         window.location.href = "/tutorial";
       } else {
-        toastr.error(message);
+        toastr.error(data);
       }
     };
     serverProxy.callLogin(self.username(), self.password(), callback);
@@ -50,6 +52,7 @@
 
   self.isGameStarted = false;
   self.gameNumber = ko.observable(0);
+  self.myFullName = ko.observable('');
   self.displayLoader = ko.observable(false);
 
   // uspostavljanje igre
@@ -64,6 +67,7 @@
       }
     };
     if (!self.isGameStarted) {
+      self.myFullName(localStorage.getItem("fullName"));
       serverProxy.checkForOpponent(callback);
     }
   };
@@ -78,7 +82,7 @@
 
   // igra 1
 
-  self.opponentName = ko.observable('');
+  self.opponentName = ko.observable('???');
   self.opponentPoints1 = ko.observable(0);
   self.myPoints1 = ko.observable(0);
 
@@ -120,9 +124,8 @@
   self.myPoints2 = ko.observable(0);
 
   var playCard2 = function (cardNumber) {
-    var callback = function (serverResponse, opponentName, opponentPoints, myPoints) {
+    var callback = function (serverResponse, opponentPoints, myPoints) {
       if (serverResponse == 'success') {
-        self.opponentName(opponentName);
         self.opponentPoints2(opponentPoints);
         self.myPoints2(myPoints);
         self.displayLoader(false);
@@ -142,9 +145,8 @@
     playCard2(2);
   };
 
-  $.connection.tasks.client.opponentPlayed2 = function (receiver, opponentName, opponentPoints, myPoints) {
+  $.connection.tasks.client.opponentPlayed2 = function (receiver, opponentPoints, myPoints) {
     if (receiver == localStorage.getItem("username")) {
-      self.opponentName(opponentName);
       self.opponentPoints2(opponentPoints);
       self.myPoints2(myPoints);
       self.displayLoader(false);
@@ -157,13 +159,12 @@
   self.myPoints3 = ko.observable(0);
 
   var playCard3 = function (cardNumber) {
-    var callback = function (serverResponse, opponentName, opponentPoints, myPoints) {
+    var callback = function (serverResponse, opponentPoints, myPoints) {
       if (serverResponse == 'success') {
-        self.opponentName(opponentName);
         self.opponentPoints3(opponentPoints);
         self.myPoints3(myPoints);
         self.displayLoader(false);
-        self.gameNumber(5);
+        self.gameNumber(4);
       } else {
         self.displayLoader(true);
       }
@@ -179,28 +180,33 @@
     playCard3(2);
   };
 
-  $.connection.tasks.client.opponentPlayed3 = function (receiver, opponentName, opponentPoints, myPoints) {
+  $.connection.tasks.client.opponentPlayed3 = function (receiver, opponentPoints, myPoints) {
     if (receiver == localStorage.getItem("username")) {
-      self.opponentName(opponentName);
       self.opponentPoints3(opponentPoints);
       self.myPoints3(myPoints);
       self.displayLoader(false);
-      self.gameNumber(5);
+      self.gameNumber(4);
     }
   };
 
   // igra 4
   self.opponentPoints4 = ko.observable(0);
   self.myPoints4 = ko.observable(0);
+  self.winner = ko.observable('');
 
   var playCard4 = function (cardNumber) {
-    var callback = function (serverResponse, opponentName, opponentPoints, myPoints) {
+    var callback = function (serverResponse, opponentPoints, myPoints) {
       if (serverResponse == 'success') {
-        self.opponentName(opponentName);
         self.opponentPoints4(opponentPoints);
         self.myPoints4(myPoints);
         self.displayLoader(false);
         self.gameNumber(5);
+        if ((self.myPoints1() + self.myPoints2() + self.myPoints3() + self.myPoints4()) > (self.opponentPoints1() + self.opponentPoints2() + self.opponentPoints3() + self.opponentPoints4())){
+          self.winner(self.myFullName());
+        } else {
+          self.winner(self.opponentName());
+        }
+        localStorage.removeItem("gameId");
       } else {
         self.displayLoader(true);
       }
@@ -216,13 +222,18 @@
     playCard4(2);
   };
 
-  $.connection.tasks.client.opponentPlayed4 = function (receiver, opponentName, opponentPoints, myPoints) {
+  $.connection.tasks.client.opponentPlayed4 = function (receiver, opponentPoints, myPoints) {
     if (receiver == localStorage.getItem("username")) {
-      self.opponentName(opponentName);
       self.opponentPoints4(opponentPoints);
       self.myPoints4(myPoints);
       self.displayLoader(false);
       self.gameNumber(5);
+      if ((self.myPoints1() + self.myPoints2() + self.myPoints3() + self.myPoints4()) > (self.opponentPoints1() + self.opponentPoints2() + self.opponentPoints3() + self.opponentPoints4())) {
+        self.winner(self.myFullName());
+      } else {
+        self.winner(self.opponentName());
+      }
+      localStorage.removeItem("gameId");
     }
   };
 

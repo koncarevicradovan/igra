@@ -15,7 +15,7 @@ function GameServerProxy() {
         password: password
       },
       success: function (data, textStatus, xhr) {
-        callback(textStatus);
+        callback(textStatus, data);
       },
       error: function (xhr, textStatus, errorThrown) {
         callback(textStatus, xhr.responseJSON);
@@ -67,7 +67,6 @@ function GameServerProxy() {
           cardNumber: cardNumber
         },
         success: function (data, textStatus, xhr) {
-          alert(data);
           callback(textStatus, data.OpponentName, data.OpponentPoints, data.MyPoints);
         },
         error: function (xhr, textStatus, errorThrown) {
@@ -86,8 +85,7 @@ function GameServerProxy() {
           cardNumber: cardNumber
         },
         success: function (data, textStatus, xhr) {
-          alert(data);
-          callback(textStatus, data.OpponentName, data.OpponentPoints, data.MyPoints);
+          callback(textStatus, data.OpponentPoints, data.MyPoints);
         },
         error: function (xhr, textStatus, errorThrown) {
           callback(textStatus, xhr.responseJSON);
@@ -105,8 +103,7 @@ function GameServerProxy() {
           cardNumber: cardNumber
         },
         success: function (data, textStatus, xhr) {
-          alert(data);
-          callback(textStatus, data.OpponentName, data.OpponentPoints, data.MyPoints);
+          callback(textStatus, data.OpponentPoints, data.MyPoints);
         },
         error: function (xhr, textStatus, errorThrown) {
           callback(textStatus, xhr.responseJSON);
@@ -124,8 +121,7 @@ function GameServerProxy() {
           cardNumber: cardNumber
         },
         success: function (data, textStatus, xhr) {
-          alert(data);
-          callback(textStatus, data.OpponentName, data.OpponentPoints, data.MyPoints);
+          callback(textStatus, data.OpponentPoints, data.MyPoints);
         },
         error: function (xhr, textStatus, errorThrown) {
           callback(textStatus, xhr.responseJSON);

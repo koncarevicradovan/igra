@@ -22,7 +22,8 @@ namespace Igra.Controllers
             if (user != null)
             {
                 HttpContext.Current.Session["username"] = user.Username;
-                return Ok(true);
+                string fullName = user.FirstName + " " + user.LastName;
+                return Ok(fullName);
             }
             else
             {

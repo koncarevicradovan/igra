@@ -1,22 +1,4 @@
-﻿/*body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}*/
-
-/* Set padding to keep content from hitting the edges */
-/*.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}*/
-
-/* Set width on the form input elements since they're 100% wide by default */
-/*input,
-select,
-textarea {
-    max-width: 280px;
-}*/
-
-body {
+﻿body {
     margin: 20px;
     font-family: "Arial", "Helventica", sans-serif;
 }
@@ -82,6 +64,15 @@ th, td {
     animation: spin 2s linear infinite;
 }
 
+#loader:after {
+    content: "Loading text";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);
@@ -93,8 +84,14 @@ th, td {
 }
 .centered {
     position: fixed; /* or absolute */
-    top: 50%;
-    left: 50%;
+    top: 48%;
+    left: 46%;
+}
+
+.centeredText {
+    position: fixed; /* or absolute */
+    top: 68%;
+    left: 44%;
 }
 
 #gradientBackground {
@@ -213,7 +210,7 @@ span.round-tab:hover {
 
 .wizard .tab-pane {
     position: relative;
-    padding-top: 50px;
+    padding-top: 10px;
 }
 
 .wizard h3 {
@@ -256,4 +253,28 @@ span.round-tab:hover {
 .rucnoCrtano {
     border: solid 2px white;
     border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+}
+
+.levaDesnaBordura {
+    border-left: solid 2px white;
+    border-right: solid 2px white
+}
+
+.levaBorduraBold {
+    border-left: solid 2px white;
+    font-weight: bold;
+}
+
+.slikaCrvena {
+    border: solid 2px red;
+    background: white;
+    height: 200px;
+    width: 137.5px;
+}
+
+.slikaCrna {
+    border: solid 2px black;
+    background: white;
+    height: 200px;
+    width: 137.5px;
 }

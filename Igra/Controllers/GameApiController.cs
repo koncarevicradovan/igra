@@ -73,12 +73,16 @@ namespace Igra.Controllers
                 if (currentGame.Player2Game1Played)
                 {
                     var context = GlobalHost.ConnectionManager.GetHubContext<Tasks>();
-                    context.Clients.All.opponentPlayed1(currentGame.Player2, currentGame.Player1, currentGame.Player1Game1Points, currentGame.Player2Game1Points);
+                    var myUser = db.Users.FirstOrDefault(x=>x.Username == currentGame.Player1);
+                    var myFullName = myUser.FirstName + " " + myUser.LastName;
+                    var opponentUser = db.Users.FirstOrDefault(x => x.Username == currentGame.Player2);
+                    var opponentFullName = opponentUser.FirstName + " " + opponentUser.LastName;
+                    context.Clients.All.opponentPlayed1(currentGame.Player2, myFullName, currentGame.Player1Game1Points, currentGame.Player2Game1Points);
                     PlayCardResponse response = new PlayCardResponse
                     {
-                        OpponentName = currentGame.Player1,
-                        OpponentPoints = currentGame.Player1Game1Points,
-                        MyPoints = currentGame.Player2Game1Points
+                        OpponentName = opponentFullName,
+                        OpponentPoints = currentGame.Player2Game1Points,
+                        MyPoints = currentGame.Player1Game1Points
                     };
                     return Ok(response);
                 }
@@ -136,10 +140,15 @@ namespace Igra.Controllers
                 if (currentGame.Player1Game1Played)
                 {
                     var context = GlobalHost.ConnectionManager.GetHubContext<Tasks>();
-                    context.Clients.All.opponentPlayed1(currentGame.Player1, currentGame.Player2, currentGame.Player2Game1Points, currentGame.Player1Game1Points);
+                    var myUser = db.Users.FirstOrDefault(x => x.Username == currentGame.Player2);
+                    var myFullName = myUser.FirstName + " " + myUser.LastName;
+                    var opponentUser = db.Users.FirstOrDefault(x => x.Username == currentGame.Player1);
+                    var opponentFullName = opponentUser.FirstName + " " + opponentUser.LastName;
+
+                    context.Clients.All.opponentPlayed1(currentGame.Player1, myFullName, currentGame.Player2Game1Points, currentGame.Player1Game1Points);
                     PlayCardResponse response = new PlayCardResponse
                     {
-                        OpponentName = currentGame.Player1,
+                        OpponentName = opponentFullName,
                         OpponentPoints = currentGame.Player1Game1Points,
                         MyPoints = currentGame.Player2Game1Points
                     };
@@ -173,12 +182,11 @@ namespace Igra.Controllers
                 if (currentGame.Player2Game2Played)
                 {
                     var context = GlobalHost.ConnectionManager.GetHubContext<Tasks>();
-                    context.Clients.All.opponentPlayed2(currentGame.Player2, currentGame.Player1, currentGame.Player1Game2Points, currentGame.Player2Game2Points);
+                    context.Clients.All.opponentPlayed2(currentGame.Player2, currentGame.Player1Game2Points, currentGame.Player2Game2Points);
                     PlayCardResponse response = new PlayCardResponse
                     {
-                        OpponentName = currentGame.Player1,
-                        OpponentPoints = currentGame.Player1Game2Points,
-                        MyPoints = currentGame.Player2Game2Points
+                        OpponentPoints = currentGame.Player2Game2Points,
+                        MyPoints = currentGame.Player1Game2Points
                     };
                     return Ok(response);
                 }
@@ -204,10 +212,9 @@ namespace Igra.Controllers
                 if (currentGame.Player1Game2Played)
                 {
                     var context = GlobalHost.ConnectionManager.GetHubContext<Tasks>();
-                    context.Clients.All.opponentPlayed2(currentGame.Player1, currentGame.Player2, currentGame.Player2Game2Points, currentGame.Player1Game2Points);
+                    context.Clients.All.opponentPlayed2(currentGame.Player1, currentGame.Player2Game2Points, currentGame.Player1Game2Points);
                     PlayCardResponse response = new PlayCardResponse
                     {
-                        OpponentName = currentGame.Player1,
                         OpponentPoints = currentGame.Player1Game2Points,
                         MyPoints = currentGame.Player2Game2Points
                     };
@@ -237,12 +244,11 @@ namespace Igra.Controllers
                 if (currentGame.Player2Game3Played)
                 {
                     var context = GlobalHost.ConnectionManager.GetHubContext<Tasks>();
-                    context.Clients.All.opponentPlayed3(currentGame.Player2, currentGame.Player1, currentGame.Player1Game3Points, currentGame.Player2Game3Points);
+                    context.Clients.All.opponentPlayed3(currentGame.Player2, currentGame.Player1Game3Points, currentGame.Player2Game3Points);
                     PlayCardResponse response = new PlayCardResponse
                     {
-                        OpponentName = currentGame.Player1,
-                        OpponentPoints = currentGame.Player1Game3Points,
-                        MyPoints = currentGame.Player2Game3Points
+                        OpponentPoints = currentGame.Player2Game3Points,
+                        MyPoints = currentGame.Player1Game3Points
                     };
                     return Ok(response);
                 }
@@ -265,10 +271,9 @@ namespace Igra.Controllers
                 if (currentGame.Player1Game3Played)
                 {
                     var context = GlobalHost.ConnectionManager.GetHubContext<Tasks>();
-                    context.Clients.All.opponentPlayed3(currentGame.Player1, currentGame.Player2, currentGame.Player2Game3Points, currentGame.Player1Game3Points);
+                    context.Clients.All.opponentPlayed3(currentGame.Player1, currentGame.Player2Game3Points, currentGame.Player1Game3Points);
                     PlayCardResponse response = new PlayCardResponse
                     {
-                        OpponentName = currentGame.Player1,
                         OpponentPoints = currentGame.Player1Game3Points,
                         MyPoints = currentGame.Player2Game3Points
                     };
@@ -302,12 +307,11 @@ namespace Igra.Controllers
                 if (currentGame.Player2Game4Played)
                 {
                     var context = GlobalHost.ConnectionManager.GetHubContext<Tasks>();
-                    context.Clients.All.opponentPlayed4(currentGame.Player2, currentGame.Player1, currentGame.Player1Game4Points, currentGame.Player2Game4Points);
+                    context.Clients.All.opponentPlayed4(currentGame.Player2, currentGame.Player1Game4Points, currentGame.Player2Game4Points);
                     PlayCardResponse response = new PlayCardResponse
                     {
-                        OpponentName = currentGame.Player1,
-                        OpponentPoints = currentGame.Player1Game4Points,
-                        MyPoints = currentGame.Player2Game4Points
+                        OpponentPoints = currentGame.Player2Game4Points,
+                        MyPoints = currentGame.Player1Game4Points
                     };
                     return Ok(response);
                 }
@@ -333,10 +337,9 @@ namespace Igra.Controllers
                 if (currentGame.Player1Game4Played)
                 {
                     var context = GlobalHost.ConnectionManager.GetHubContext<Tasks>();
-                    context.Clients.All.opponentPlayed4(currentGame.Player1, currentGame.Player2, currentGame.Player2Game4Points, currentGame.Player1Game4Points);
+                    context.Clients.All.opponentPlayed4(currentGame.Player1, currentGame.Player2Game4Points, currentGame.Player1Game4Points);
                     PlayCardResponse response = new PlayCardResponse
                     {
-                        OpponentName = currentGame.Player1,
                         OpponentPoints = currentGame.Player1Game4Points,
                         MyPoints = currentGame.Player2Game4Points
                     };
