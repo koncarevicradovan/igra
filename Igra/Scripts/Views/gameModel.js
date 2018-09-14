@@ -12,7 +12,19 @@
   self.passwordRegister = ko.observable("");
   self.nameRegister = ko.observable("");
   self.lastnameRegister = ko.observable("");
+  self.question1 = ko.observable(1);
   self.gender = ko.observable("male");
+  self.question1 = ko.observable("1");
+  self.question2 = ko.observable("1");
+  self.question3 = ko.observable("1");
+  self.question4 = ko.observable("1");
+  self.question5 = ko.observable("1");
+  self.question6 = ko.observable("1");
+  self.question7 = ko.observable("1");
+  self.question8 = ko.observable("1");
+  self.question9 = ko.observable("1");
+  self.question10 = ko.observable("1");
+
 
   self.login = function () {
     var callback = function (serverResponse, data) {
@@ -38,7 +50,7 @@
         toastr.error(message);
       }
     };
-    serverProxy.registerCall(self.usernameRegister(), self.passwordRegister(), self.nameRegister(), self.lastnameRegister(), self.gender(), callback);
+    serverProxy.registerCall(self.usernameRegister(), self.passwordRegister(), self.nameRegister(), self.lastnameRegister(), self.gender(), self.question1(), self.question2(), self.question3(), self.question4(), self.question5(), self.question6(), self.question7(), self.question8(), self.question9(), self.question10(), callback);
   };
 
   self.clearLocalStorage = function () {

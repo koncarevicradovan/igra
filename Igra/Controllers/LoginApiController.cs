@@ -32,7 +32,6 @@ namespace Igra.Controllers
         }
 
         [HttpPost, Route("register")]
-        //[Route("register")]
         public IHttpActionResult Register([FromBody]RegisterRequest registerRequest)
         {
             try
@@ -43,7 +42,17 @@ namespace Igra.Controllers
                     LastName = registerRequest.LastName,
                     Password = registerRequest.Password,
                     Username = registerRequest.Username,
-                    IsFemale = registerRequest.IsFemale
+                    IsFemale = registerRequest.IsFemale,
+                    Question1 = registerRequest.Question1,
+                    Question2 = registerRequest.Question2,
+                    Question3 = registerRequest.Question3,
+                    Question4 = registerRequest.Question4,
+                    Question5 = registerRequest.Question5,
+                    Question6 = registerRequest.Question6,
+                    Question7 = registerRequest.Question7,
+                    Question8 = registerRequest.Question8,
+                    Question9 = registerRequest.Question9,
+                    Question10 = registerRequest.Question10,
                 };
                 db.Users.Add(user);
                 db.SaveChanges();

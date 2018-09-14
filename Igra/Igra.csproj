@@ -276,6 +276,10 @@
     <Compile Include="Migrations\201807041925575_Added is played flags to game.Designer.cs">
       <DependentUpon>201807041925575_Added is played flags to game.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809142037093_Addedquestions to gaming user.cs" />
+    <Compile Include="Migrations\201809142037093_Addedquestions to gaming user.Designer.cs">
+      <DependentUpon>201809142037093_Addedquestions to gaming user.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -396,6 +400,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807041925575_Added is played flags to game.resx">
       <DependentUpon>201807041925575_Added is played flags to game.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809142037093_Addedquestions to gaming user.resx">
+      <DependentUpon>201809142037093_Addedquestions to gaming user.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

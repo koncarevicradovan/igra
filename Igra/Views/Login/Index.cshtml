@@ -175,17 +175,129 @@
                                 <div class="form-group">
                                     <label class="radio-inline"><input type="radio" value="male" data-bind="checked: gender" name="optradio">Muški</label>
                                     <label class="radio-inline"><input type="radio" value="female" data-bind="checked: gender" name="optradio">Ženski</label>
-                                    @*<input type="gender" name="email2" data-bind="value: lastnameRegister" id="email2" tabindex="1" class="form-control" placeholder="Prezime">*@
                                 </div>
                                 <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-sm-6 col-sm-offset-3">
-                                            <input type="submit" data-bind="click: register" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Registruj se">
-                                            <button data-bind="click: clearLocalStorage()" style="display:none"></button>
-                                        </div>
+                                    <p style="color: #99439C;font-size: 18px;">Koliko se slažete sa sledećim tvrdnjama? Apsolutno se ne slažem - 1, 2, 3, 4, Slažem se u potpunosti - 5.</p>
+                                </div>
+                                <div class="form-group">
+                                    <p style="font-weight: bold;">Kolektivni interesi su iznad ličnih interesa</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>1 <input type="radio" id="question11" data-bind="checked: question1" name="val1" value="1"></label>
+                                    <label>2 <input type="radio" id="question12" data-bind="checked: question1" name="val1" value="2"></label>
+                                    <label>3 <input type="radio" id="question13" data-bind="checked: question1" name="val1" value="3"></label>
+                                    <label>4 <input type="radio" id="question14" data-bind="checked: question1" name="val1" value="4"></label>
+                                    <label>5 <input type="radio" id="question15" data-bind="checked: question1" name="val1" value="5"></label>
+                                </div>
+                                <div style="background-color:#E5C8E4">
+                                    <div class="form-group">
+                                        <p style="font-weight: bold;">Sebe smatram altruistom</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>1 <input type="radio" id="question21" data-bind="checked: question2" name="val2" value="1"></label>
+                                        <label>2 <input type="radio" id="question22" data-bind="checked: question2" name="val2" value="2"></label>
+                                        <label>3 <input type="radio" id="question23" data-bind="checked: question2" name="val2" value="3"></label>
+                                        <label>4 <input type="radio" id="question24" data-bind="checked: question2" name="val2" value="4"></label>
+                                        <label>5 <input type="radio" id="question25" data-bind="checked: question2" name="val2" value="5"></label>
                                     </div>
                                 </div>
-                            </form>
+                                    <div class="form-group">
+                                        <p style="font-weight: bold;">Redovno učestvujem u humanitarnim akcijama</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>1 <input type="radio" id="question31" data-bind="checked: question3" name="val3" value="1"></label>
+                                        <label>2 <input type="radio" id="question32" data-bind="checked: question3" name="val3" value="2"></label>
+                                        <label>3 <input type="radio" id="question33" data-bind="checked: question3" name="val3" value="3"></label>
+                                        <label>4 <input type="radio" id="question34" data-bind="checked: question3" name="val3" value="4"></label>
+                                        <label>5 <input type="radio" id="question35" data-bind="checked: question3" name="val3" value="5"></label>
+                                    </div>
+                                    <div style="background-color:#E5C8E4">
+                                        <div class="form-group">
+                                            <p style="font-weight: bold;">Dobrovoljni sam davalac krvi</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>1 <input type="radio" id="question41" data-bind="checked: question4" name="val4" value="1"></label>
+                                            <label>2 <input type="radio" id="question42" data-bind="checked: question4" name="val4" value="2"></label>
+                                            <label>3 <input type="radio" id="question43" data-bind="checked: question4" name="val4" value="3"></label>
+                                            <label>4 <input type="radio" id="question44" data-bind="checked: question4" name="val4" value="4"></label>
+                                            <label>5 <input type="radio" id="question45" data-bind="checked: question4" name="val4" value="5"></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <p style="font-weight: bold;">Trudim se da ne ostavljam upaljeno svetlo ukoliko to nije neophodno</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>1 <input type="radio" id="question51" data-bind="checked: question5" name="val5" value="1"></label>
+                                        <label>2 <input type="radio" id="question52" data-bind="checked: question5" name="val5" value="2"></label>
+                                        <label>3 <input type="radio" id="question53" data-bind="checked: question5" name="val5" value="3"></label>
+                                        <label>4 <input type="radio" id="question54" data-bind="checked: question5" name="val5" value="4"></label>
+                                        <label>5 <input type="radio" id="question55" data-bind="checked: question5" name="val5" value="5"></label>
+                                    </div>
+                                <div style="background-color:#E5C8E4">
+                                    <div class="form-group">
+                                        <p style="font-weight: bold;">Učestvovao/la sam u studentskim protestima protiv odluke fakulteta koje pogoršavaju položaj svih studenata</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>1 <input type="radio" id="question61" data-bind="checked: question6" name="val6" value="1"></label>
+                                        <label>2 <input type="radio" id="question62" data-bind="checked: question6" name="val6" value="2"></label>
+                                        <label>3 <input type="radio" id="question63" data-bind="checked: question6" name="val6" value="3"></label>
+                                        <label>4 <input type="radio" id="question64" data-bind="checked: question6" name="val6" value="4"></label>
+                                        <label>5 <input type="radio" id="question65" data-bind="checked: question6" name="val6" value="5"></label>
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <p style="font-weight: bold;">Čekao/la bih u red za ekološki benzin iako za običan niko ne čeka, pod pretpostavkom da su cene iste</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>1 <input type="radio" id="question71" data-bind="checked: question7" name="val7" value="1"></label>
+                                        <label>2 <input type="radio" id="question72" data-bind="checked: question7" name="val7" value="2"></label>
+                                        <label>3 <input type="radio" id="question73" data-bind="checked: question7" name="val7" value="3"></label>
+                                        <label>4 <input type="radio" id="question74" data-bind="checked: question7" name="val7" value="4"></label>
+                                        <label>5 <input type="radio" id="question75" data-bind="checked: question7" name="val7" value="5"></label>
+                                    </div>
+                                <div style="background-color:#E5C8E4">
+                                    <div class="form-group">
+                                        <p style="font-weight: bold;">Kupujem karte za gradski prevoz iako većina prolazi nekažnjeno kad nema kartu</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>1 <input type="radio" id="question81" data-bind="checked: question8" name="val8" value="1"></label>
+                                        <label>2 <input type="radio" id="question82" data-bind="checked: question8" name="val8" value="2"></label>
+                                        <label>3 <input type="radio" id="question83" data-bind="checked: question8" name="val8" value="3"></label>
+                                        <label>4 <input type="radio" id="question84" data-bind="checked: question8" name="val8" value="4"></label>
+                                        <label>5 <input type="radio" id="question85" data-bind="checked: question8" name="val8" value="5"></label>
+                                    </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <p style="font-weight: bold;">Kupujem ekološke proizvode bele tehnike ako cena nije drastično veća od običnih</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>1 <input type="radio" id="question91" data-bind="checked: question9" name="val9" value="1"></label>
+                                        <label>2 <input type="radio" id="question92" data-bind="checked: question9" name="val9" value="2"></label>
+                                        <label>3 <input type="radio" id="question93" data-bind="checked: question9" name="val9" value="3"></label>
+                                        <label>4 <input type="radio" id="question94" data-bind="checked: question9" name="val9" value="4"></label>
+                                        <label>5 <input type="radio" id="question95" data-bind="checked: question9" name="val9" value="5"></label>
+                                    </div>
+                                <div style="background-color:#E5C8E4">
+                                    <div class="form-group">
+                                        <p style="font-weight: bold;">Ponekad bacam smeće na ulicu (vankorpe/ kontejnera) kad niko ne gleda</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>1 <input type="radio" id="question101" data-bind="checquestion10ked: " name="val10" value="1"></label>
+                                        <label>2 <input type="radio" id="question102" data-bind="checked: question10" name="val10" value="2"></label>
+                                        <label>3 <input type="radio" id="question103" data-bind="checked: question10" name="val10" value="3"></label>
+                                        <label>4 <input type="radio" id="question104" data-bind="checked: question10" name="val10" value="4"></label>
+                                        <label>5 <input type="radio" id="question105" data-bind="checked: question10" name="val10" value="5"></label>
+                                    </div>
+                                </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <button data-bind="click: register" id="register-submit" tabindex="4" class="form-control btn btn-register">Registruj se</button>
+                                                <button data-bind="click: clearLocalStorage()" style="display:none"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+</form>
                         </div>
                     </div>
                 </div>
