@@ -24,7 +24,15 @@
   self.question8 = ko.observable("1");
   self.question9 = ko.observable("1");
   self.question10 = ko.observable("1");
-
+  self.question11 = ko.observable("1");
+  self.question12 = ko.observable("1");
+  self.question13 = ko.observable("1");
+  self.question14 = ko.observable("1");
+  self.question15 = ko.observable("1");
+  self.question16 = ko.observable("1");
+  self.question17 = ko.observable("1");
+  self.question18 = ko.observable("1");
+  self.question19 = ko.observable("1");
 
   self.login = function () {
     var callback = function (serverResponse, data) {
@@ -50,11 +58,15 @@
         toastr.error(message);
       }
     };
-    serverProxy.registerCall(self.usernameRegister(), self.passwordRegister(), self.nameRegister(), self.lastnameRegister(), self.gender(), self.question1(), self.question2(), self.question3(), self.question4(), self.question5(), self.question6(), self.question7(), self.question8(), self.question9(), self.question10(), callback);
+    serverProxy.registerCall(self.usernameRegister(), self.passwordRegister(), self.nameRegister(), self.lastnameRegister(), self.gender(), self.question1(), self.question2(), self.question3(), self.question4(), self.question5(), self.question6(), self.question7(), self.question8(), self.question9(), self.question10(), self.question11(), self.question12(), self.question13(), self.question14(), self.question15(), self.question16(), self.question17(), self.question18(), self.question19(), callback);
   };
 
   self.clearLocalStorage = function () {
     localStorage.clear();
+  };
+
+  self.downloadFile = function () {
+    window.location.href = "game/download";
   };
 
   // tutorial
@@ -213,7 +225,7 @@
         self.myPoints4(myPoints);
         self.displayLoader(false);
         self.gameNumber(5);
-        if ((self.myPoints1() + self.myPoints2() + self.myPoints3() + self.myPoints4()) > (self.opponentPoints1() + self.opponentPoints2() + self.opponentPoints3() + self.opponentPoints4())){
+        if ((self.myPoints1() + self.myPoints2() + self.myPoints3() + self.myPoints4()) > (self.opponentPoints1() + self.opponentPoints2() + self.opponentPoints3() + self.opponentPoints4())) {
           self.winner(self.myFullName());
         } else {
           self.winner(self.opponentName());

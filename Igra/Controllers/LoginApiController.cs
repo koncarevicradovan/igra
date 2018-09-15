@@ -53,6 +53,15 @@ namespace Igra.Controllers
                     Question8 = registerRequest.Question8,
                     Question9 = registerRequest.Question9,
                     Question10 = registerRequest.Question10,
+                    Question11 = registerRequest.Question11,
+                    Question12 = registerRequest.Question12,
+                    Question13 = registerRequest.Question13,
+                    Question14 = registerRequest.Question14,
+                    Question15 = registerRequest.Question15,
+                    Question16 = registerRequest.Question16,
+                    Question17 = registerRequest.Question17,
+                    Question18 = registerRequest.Question18,
+                    Question19 = registerRequest.Question19,
                 };
                 db.Users.Add(user);
                 db.SaveChanges();

@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Aspose.Cells, Version=8.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Aspose.Cell.12.8.1.22\lib\Aspose.Cells.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -280,6 +283,10 @@
     <Compile Include="Migrations\201809142037093_Addedquestions to gaming user.Designer.cs">
       <DependentUpon>201809142037093_Addedquestions to gaming user.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809152010152_Added more questions.cs" />
+    <Compile Include="Migrations\201809152010152_Added more questions.Designer.cs">
+      <DependentUpon>201809152010152_Added more questions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -403,6 +410,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809142037093_Addedquestions to gaming user.resx">
       <DependentUpon>201809142037093_Addedquestions to gaming user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809152010152_Added more questions.resx">
+      <DependentUpon>201809152010152_Added more questions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

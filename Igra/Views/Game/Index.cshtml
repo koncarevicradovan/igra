@@ -34,6 +34,14 @@
                                 </span>
                             </a>
                         </li>
+
+                        <li role="presentation" data-bind="css: { 'active': gameNumber()==5, disabled: gameNumber()!=5 }">
+                            <a href="#" role="tab" title="Complete">
+                                <span class="round-tab">
+                                    V
+                                </span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
@@ -41,7 +49,13 @@
                     <div class="tab-content" style="background-color: transparent">
                         <!-- ko if: gameNumber() == 1 -->
                         <div class="tab-pane active" role="tabpanel" id="step1">
-                            <h3>Prva igra - izaberite jednu kartu</h3>
+                            <h2 style="color:white"><i class="glyphicon glyphicon-hand-right"></i> Pobednik je - Julija Stefanovic!!! <i class="glyphicon glyphicon-hand-left"></i></h2>
+                            <img src="~/Images/slide7.jpg" alt="Uvod" class="slideTutorial" />
+                            <img src="~/Images/slide8.jpg" alt="Uvod" class="slideTutorial" />
+                            <button class="btn btn-primary" data-bind="click: checkForOpponent()">Export u Excel</button>
+                            <button class="btn btn-primary" data-bind="click: checkForOpponent()">Nazad na početak</button>
+
+                            @*<h3>Prva igra - izaberite jednu kartu</h3>
                             <div class="col-md-4 col-md-offset-4">
                                 <figure data-bind="click: playCard11" class="figure" style="float:left">
                                     <img class="slikaCrvena figure-img img-fluid rounded" src="~/Images/redCard.png" />
@@ -51,7 +65,8 @@
                                     <img class="slikaCrna figure-img img-fluid rounded" src="~/Images/blackCard.png" />
                                     <figcaption class="figure-caption">Daj protivniku 10 poena.</figcaption>
                                 </figure>
-                            </div>
+                            </div>*@
+                            @*<img src="~/Images/Igra1.jpg" alt="Uvod" class="slideTutorial" />*@
                         </div>
                         <!-- /ko -->
                         <!-- ko if: gameNumber() == 2 -->
@@ -67,6 +82,7 @@
                                     <figcaption class="figure-caption">Daj protivniku 10 poena.</figcaption>
                                 </figure>
                             </div>
+                            @*<img src="~/Images/Igra2.jpg" alt="Uvod" class="slideTutorial" />*@
                         </div>
                         <!-- /ko -->
                         <!-- ko if: gameNumber() == 3 -->
@@ -82,6 +98,7 @@
                                     <figcaption class="figure-caption">Daj protivniku 10 poena.</figcaption>
                                 </figure>
                             </div>
+                            @*<img src="~/Images/Igra3.jpg" alt="Uvod" class="slideTutorial" />*@
                         </div>
                         <!-- /ko -->
                         <!-- ko if: gameNumber() == 4 -->
@@ -97,6 +114,7 @@
                                     <figcaption class="figure-caption">Daj protivniku 10 poena.</figcaption>
                                 </figure>
                             </div>
+                            @*<img src="~/Images/Igra4.jpg" alt="Uvod" class="slideTutorial" />*@
                         </div>
                         <!-- /ko -->
                         <div class="clearfix"></div>

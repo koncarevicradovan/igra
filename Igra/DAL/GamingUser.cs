@@ -19,5 +19,14 @@
         public string Question8 { get; set; }
         public string Question9 { get; set; }
         public string Question10 { get; set; }
+        public string Question11 { get; set; }
+        public string Question12 { get; set; }
+        public string Question13 { get; set; }
+        public string Question14 { get; set; }
+        public string Question15 { get; set; }
+        public string Question16 { get; set; }
+        public string Question17 { get; set; }
+        public string Question18 { get; set; }
+        public string Question19 { get; set; }
     }
 }

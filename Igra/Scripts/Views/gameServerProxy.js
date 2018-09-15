@@ -23,7 +23,7 @@ function GameServerProxy() {
     });
   };
 
-  self.registerCall = function (username, password, firstname, lastname, gender, question1, question2, question3, question4, question5, question6, question7, question8, question9, question10, callback) {
+  self.registerCall = function (username, password, firstname, lastname, gender, question1, question2, question3, question4, question5, question6, question7, question8, question9, question10, question11, question12, question13, question14, question15, question16, question17, question18, question19, callback) {
     var isFemale = gender == 'female';
     $.ajax({
       url: '/api/loginapi/register',
@@ -45,6 +45,15 @@ function GameServerProxy() {
         question8: question8,
         question9: question9,
         question10: question10,
+        question11: question11,
+        question12: question12,
+        question13: question13,
+        question14: question14,
+        question15: question15,
+        question16: question16,
+        question17: question17,
+        question18: question18,
+        question19: question19
       },
       success: function (data, textStatus, xhr) {
         callback(textStatus);
