@@ -66,7 +66,7 @@
   };
 
   self.downloadFile = function () {
-    window.location.href = "game/download";
+    window.location.href = "game/download?username=" + localStorage.getItem("username");
   };
 
   self.backToTutorial = function () {
