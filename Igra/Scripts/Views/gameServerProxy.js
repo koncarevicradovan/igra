@@ -1,6 +1,4 @@
-﻿
-
-function GameServerProxy() {
+﻿function GameServerProxy() {
   var self = this;
 
 
@@ -75,6 +73,20 @@ function GameServerProxy() {
         callback(textStatus, xhr.responseJSON);
       }
     });
+  };
+  self.checkForOpponent2 = function (callback) {
+    $.ajax({
+      url: '/api/gameapi/checkForOpponent2',
+      type: 'POST',
+      dataType: 'json',
+      success: function (data, textStatus, xhr) {
+        callback(textStatus, data);
+      },
+      error: function (xhr, textStatus, errorThrown) {
+        callback(textStatus, xhr.responseJSON);
+      }
+    });
+  };
 
     self.playCard1 = function (gameId, cardNumber, callback) {
       $.ajax({
@@ -147,5 +159,23 @@ function GameServerProxy() {
         }
       });
     };
+
+    self.playCard5 = function (gameId, cardNumber, game5NumberOfPlay, callback) {
+      $.ajax({
+        url: '/api/gameapi/playCard5',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          gameId: gameId,
+          cardNumber: cardNumber,
+          numberOfPlay: game5NumberOfPlay
+        },
+        success: function (data, textStatus, xhr) {
+          callback(textStatus, data.OpponentPoints, data.MyPoints);
+        },
+        error: function (xhr, textStatus, errorThrown) {
+          callback(textStatus, xhr.responseJSON);
+        }
+      });
+    };
   };
-}

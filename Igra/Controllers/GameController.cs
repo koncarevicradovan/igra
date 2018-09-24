@@ -21,7 +21,6 @@ namespace Igra.Controllers
         {
             using (MemoryStream ms = new MemoryStream())
             {
-                byte[] fileBytes = System.IO.File.ReadAllBytes(@"C:\git\testic.docx");
                 Workbook workbook = new Workbook();
                 Worksheet worksheet = workbook.Worksheets[0];
                 worksheet.Cells["A1"].Value = "DA!";

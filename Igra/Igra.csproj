@@ -245,6 +245,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\GameApiController.cs" />
+    <Compile Include="DAL\FifthGame.cs" />
     <Compile Include="DAL\Game.cs" />
     <Compile Include="DAL\ReadyForGame.cs" />
     <Compile Include="Filter\CheckLoginFilterAttribute.cs" />
@@ -287,6 +288,10 @@
     <Compile Include="Migrations\201809152010152_Added more questions.Designer.cs">
       <DependentUpon>201809152010152_Added more questions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809241354485_Added fifth game.cs" />
+    <Compile Include="Migrations\201809241354485_Added fifth game.Designer.cs">
+      <DependentUpon>201809241354485_Added fifth game.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -296,6 +301,7 @@
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="VM\AppCache.cs" />
+    <Compile Include="VM\PlayCardRequestFifthGame.cs" />
     <Compile Include="VM\PlayCardResponse.cs" />
     <Compile Include="VM\PlayCardRequest.cs" />
     <Compile Include="VM\RegisterRequest.cs" />
@@ -342,6 +348,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -360,7 +368,9 @@
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\Views\gameServerProxy.js" />
     <Content Include="Scripts\Views\gameModel.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -413,6 +423,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809152010152_Added more questions.resx">
       <DependentUpon>201809152010152_Added more questions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809241354485_Added fifth game.resx">
+      <DependentUpon>201809241354485_Added fifth game.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

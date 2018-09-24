@@ -47,6 +47,7 @@ namespace Igra.Controllers
                 };
                 db.Games.Add(newGame);
                 db.SaveChanges();
+                AppCache.AvailablePlayers.Remove(opponent);
                 context.Clients.All.tellOpponentThatGameIsCreated(opponent, newGame.Id);
                 return Ok(newGame.Id);
             }
@@ -342,6 +343,261 @@ namespace Igra.Controllers
                     {
                         OpponentPoints = currentGame.Player1Game4Points,
                         MyPoints = currentGame.Player2Game4Points
+                    };
+                    return Ok(response);
+                }
+                else
+                {
+                    return Content(HttpStatusCode.BadRequest, "Cekanje na drugog igraca da odigra...");
+                }
+            }
+        }
+
+        [HttpPost, Route("checkForOpponent2")]
+        public IHttpActionResult CheckForOpponent2()
+        {
+            string username = (string)HttpContext.Current.Session["username"];
+
+            var context = GlobalHost.ConnectionManager.GetHubContext<Tasks>();
+
+            if (AppCache.AvailablePlayersFifthGame.Count(x => x != username) == 0)
+            {
+                AppCache.AvailablePlayersFifthGame.Add(username);
+                return Content(HttpStatusCode.BadRequest, "Nema korisnika na mreži koji su spremni za petu igru, dodat na cekanje...");
+            }
+            else
+            {
+                string opponent = AppCache.AvailablePlayersFifthGame.FirstOrDefault();
+                FifthGame newGame = new FifthGame
+                {
+                    Player1 = opponent,
+                    Player2 = username,
+                    Player1Game1Points = 0,
+                    Player2Game1Points = 0,
+                    Player1Game2Points = 0,
+                    Player2Game2Points = 0,
+                    Player1Game3Points = 0,
+                    Player2Game3Points = 0,
+                    Player1Game4Points = 0,
+                    Player2Game4Points = 0,
+                    Player1Game5Points = 0,
+                    Player2Game5Points = 0
+                };
+                db.FifthGames.Add(newGame);
+                db.SaveChanges();
+                context.Clients.All.tellOpponentThatGameIsCreated2(opponent, newGame.Id);
+                AppCache.AvailablePlayersFifthGame.Remove(opponent);
+                return Ok(newGame.Id);
+            }
+        }
+
+        [HttpPost, Route("playCard5")]
+        public IHttpActionResult PlayCard5([FromBody]PlayCardRequestFifthGame request)
+        {
+            string username = (string)HttpContext.Current.Session["username"];
+            FifthGame currentGame = db.FifthGames.FirstOrDefault(x => x.Id == request.GameId);
+            // ako sam prvi igrac
+            if (currentGame.Player1 == username)
+            {
+                if (request.CardNumber == 1)
+                {
+                    switch (request.NumberOfPlay)
+                    {
+                        case 1:
+                            currentGame.Player1Game1Points += 5;
+                            currentGame.Player1Game1Played = true;
+                            break;
+                        case 2:
+                            currentGame.Player1Game2Points += 5;
+                            currentGame.Player1Game2Played = true;
+                            break;
+                        case 3:
+                            currentGame.Player1Game3Points += 5;
+                            currentGame.Player1Game3Played = true;
+                            break;
+                        case 4:
+                            currentGame.Player1Game4Points += 5;
+                            currentGame.Player1Game4Played = true;
+                            break;
+                        case 5:
+                            currentGame.Player1Game5Points += 5;
+                            currentGame.Player1Game5Played = true;
+                            break;
+                    }
+                    
+                }
+                else
+                {
+                    switch (request.NumberOfPlay)
+                    {
+                        case 1:
+                            currentGame.Player2Game1Points += 10;
+                            currentGame.Player1Game1Played = true;
+
+                            break;
+                        case 2:
+                            currentGame.Player2Game2Points += 10;
+                            currentGame.Player1Game2Played = true;
+                            break;
+                        case 3:
+                            currentGame.Player2Game3Points += 10;
+                            currentGame.Player1Game3Played = true;
+                            break;
+                        case 4:
+                            currentGame.Player2Game4Points += 10;
+                            currentGame.Player1Game4Played = true;
+                            break;
+                        case 5:
+                            currentGame.Player2Game5Points += 10;
+                            currentGame.Player1Game5Played = true;
+                            break;
+                    }
+                }
+                db.SaveChanges();
+                bool isCurrentGamePlayed = (request.NumberOfPlay == 1 && currentGame.Player2Game1Played) ||
+                    (request.NumberOfPlay == 2 && currentGame.Player2Game2Played) ||
+                    (request.NumberOfPlay == 3 && currentGame.Player2Game3Played) ||
+                    (request.NumberOfPlay == 4 && currentGame.Player2Game4Played) ||
+                    (request.NumberOfPlay == 5 && currentGame.Player2Game5Played);
+
+                if (isCurrentGamePlayed)
+                {
+                    var context = GlobalHost.ConnectionManager.GetHubContext<Tasks>();
+                    int player1CurrentGamePoints = 0;
+                    int player2CurrentGamePoints = 0;
+                    switch (request.NumberOfPlay)
+                    {
+                        case 1:
+                            player1CurrentGamePoints = currentGame.Player1Game1Points.Value;
+                            player2CurrentGamePoints = currentGame.Player2Game1Points.Value;
+                            break;
+                        case 2:
+                            player1CurrentGamePoints = currentGame.Player1Game2Points.Value;
+                            player2CurrentGamePoints = currentGame.Player2Game2Points.Value;
+                            break;
+                        case 3:
+                            player1CurrentGamePoints = currentGame.Player1Game3Points.Value;
+                            player2CurrentGamePoints = currentGame.Player2Game3Points.Value;
+                            break;
+                        case 4:
+                            player1CurrentGamePoints = currentGame.Player1Game4Points.Value;
+                            player2CurrentGamePoints = currentGame.Player2Game4Points.Value;
+                            break;
+                        case 5:
+                            player1CurrentGamePoints = currentGame.Player1Game5Points.Value;
+                            player2CurrentGamePoints = currentGame.Player2Game5Points.Value;
+                            break;
+                    }
+                    context.Clients.All.opponentPlayed5(currentGame.Player2, player1CurrentGamePoints, player2CurrentGamePoints);
+                    PlayCardResponse response = new PlayCardResponse
+                    {
+                        OpponentPoints = player2CurrentGamePoints,
+                        MyPoints = player1CurrentGamePoints
+                    };
+                    return Ok(response);
+                }
+                else
+                {
+                    return Content(HttpStatusCode.BadRequest, "Cekanje na drugog igraca da odigra...");
+                }
+
+            }
+            else
+            // ako sam drugi igrac
+            {
+                if (request.CardNumber == 1)
+                {
+                    switch (request.NumberOfPlay)
+                    {
+                        case 1:
+                            currentGame.Player2Game1Points += 5;
+                            currentGame.Player2Game1Played = true;
+                            break;
+                        case 2:
+                            currentGame.Player2Game2Points += 5;
+                            currentGame.Player2Game2Played = true;
+                            break;
+                        case 3:
+                            currentGame.Player2Game3Points += 5;
+                            currentGame.Player2Game3Played = true;
+                            break;
+                        case 4:
+                            currentGame.Player2Game4Points += 5;
+                            currentGame.Player2Game4Played = true;
+                            break;
+                        case 5:
+                            currentGame.Player2Game5Points += 5;
+                            currentGame.Player2Game5Played = true;
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (request.NumberOfPlay)
+                    {
+                        case 1:
+                            currentGame.Player1Game1Points += 10;
+                            currentGame.Player2Game1Played = true;
+
+                            break;
+                        case 2:
+                            currentGame.Player1Game2Points += 10;
+                            currentGame.Player2Game2Played = true;
+                            break;
+                        case 3:
+                            currentGame.Player1Game3Points += 10;
+                            currentGame.Player2Game3Played = true;
+                            break;
+                        case 4:
+                            currentGame.Player1Game4Points += 10;
+                            currentGame.Player2Game4Played = true;
+                            break;
+                        case 5:
+                            currentGame.Player1Game5Points += 10;
+                            currentGame.Player2Game5Played = true;
+                            break;
+                    }
+                }
+                db.SaveChanges();
+                bool isCurrentGamePlayed = (request.NumberOfPlay == 1 && currentGame.Player1Game1Played) ||
+                    (request.NumberOfPlay == 2 && currentGame.Player1Game2Played) ||
+                    (request.NumberOfPlay == 3 && currentGame.Player1Game3Played) ||
+                    (request.NumberOfPlay == 4 && currentGame.Player1Game4Played) ||
+                    (request.NumberOfPlay == 5 && currentGame.Player1Game5Played);
+                if (isCurrentGamePlayed)
+                {
+                    int player1CurrentGamePoints = 0;
+                    int player2CurrentGamePoints = 0;
+                    switch (request.NumberOfPlay)
+                    {
+                        case 1:
+                            player1CurrentGamePoints = currentGame.Player1Game1Points.Value;
+                            player2CurrentGamePoints = currentGame.Player2Game1Points.Value;
+                            break;
+                        case 2:
+                            player1CurrentGamePoints = currentGame.Player1Game2Points.Value;
+                            player2CurrentGamePoints = currentGame.Player2Game2Points.Value;
+                            break;
+                        case 3:
+                            player1CurrentGamePoints = currentGame.Player1Game3Points.Value;
+                            player2CurrentGamePoints = currentGame.Player2Game3Points.Value;
+                            break;
+                        case 4:
+                            player1CurrentGamePoints = currentGame.Player1Game4Points.Value;
+                            player2CurrentGamePoints = currentGame.Player2Game4Points.Value;
+                            break;
+                        case 5:
+                            player1CurrentGamePoints = currentGame.Player1Game5Points.Value;
+                            player2CurrentGamePoints = currentGame.Player2Game5Points.Value;
+                            break;
+                    }
+
+                    var context = GlobalHost.ConnectionManager.GetHubContext<Tasks>();
+                    context.Clients.All.opponentPlayed5(currentGame.Player1, player2CurrentGamePoints, player1CurrentGamePoints);
+                    PlayCardResponse response = new PlayCardResponse
+                    {
+                        OpponentPoints = player1CurrentGamePoints,
+                        MyPoints = player2CurrentGamePoints
                     };
                     return Ok(response);
                 }

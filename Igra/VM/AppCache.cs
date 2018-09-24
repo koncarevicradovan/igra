@@ -8,6 +8,7 @@ namespace Igra.VM
     public class AppCache
     {
         public static List<string> AvailablePlayers { get; set; }
+        public static List<string> AvailablePlayersFifthGame { get; set; }
         public static List<Pair> Pairs { get; set; }
     }
 

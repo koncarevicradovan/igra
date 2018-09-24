@@ -21,6 +21,7 @@ namespace Igra
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AppCache.AvailablePlayers = new List<string>();
+            AppCache.AvailablePlayersFifthGame = new List<string>();
             AppCache.Pairs = new List<Pair>();
             //RouteTable.Routes.MapHubs();
         }

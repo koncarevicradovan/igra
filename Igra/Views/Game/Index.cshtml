@@ -35,7 +35,7 @@
                             </a>
                         </li>
 
-                        <li role="presentation" data-bind="css: { 'active': gameNumber()==5, disabled: gameNumber()!=5 }">
+                        <li role="presentation" data-bind="css: { 'active': gameNumber()==5, disabled: gameNumber()!=6 }">
                             <a href="#" role="tab" title="Complete">
                                 <span class="round-tab">
                                     V
@@ -49,14 +49,14 @@
                     <div class="tab-content" style="background-color: transparent">
                         <!-- ko if: gameNumber() == 1 -->
                         <div class="tab-pane active" role="tabpanel" id="step1">
-                            <h2 style="color:white"><i class="glyphicon glyphicon-hand-right"></i> Pobednik je - Julija Stefanovic!!! <i class="glyphicon glyphicon-hand-left"></i></h2>
-                            <img src="~/Images/slide7.jpg" alt="Uvod" class="slideTutorial" />
-                            <img src="~/Images/slide8.jpg" alt="Uvod" class="slideTutorial" />
-                            <button class="btn btn-primary" data-bind="click: checkForOpponent()">Export u Excel</button>
-                            <button class="btn btn-primary" data-bind="click: checkForOpponent()">Nazad na početak</button>
+                            @*<h2 style="color:white"><i class="glyphicon glyphicon-hand-right"></i> Pobednik je - Julija Stefanovic!!! <i class="glyphicon glyphicon-hand-left"></i></h2>
+                                <img src="~/Images/slide7.jpg" alt="Uvod" class="slideTutorial" />
+                                <img src="~/Images/slide8.jpg" alt="Uvod" class="slideTutorial" />
+                                <button class="btn btn-primary" data-bind="click: checkForOpponent()">Export u Excel</button>
+                                <button class="btn btn-primary" data-bind="click: checkForOpponent()">Nazad na početak</button>*@
 
-                            @*<h3>Prva igra - izaberite jednu kartu</h3>
-                            <div class="col-md-4 col-md-offset-4">
+                            <h3>Prva igra - izaberite jednu kartu</h3>
+                            <div data-bind="if: !isImageDisplayed1()" class="col-md-4 col-md-offset-4">
                                 <figure data-bind="click: playCard11" class="figure" style="float:left">
                                     <img class="slikaCrvena figure-img img-fluid rounded" src="~/Images/redCard.png" />
                                     <figcaption class="figure-caption">Zadrži za sebe 5 poena.</figcaption>
@@ -65,14 +65,16 @@
                                     <img class="slikaCrna figure-img img-fluid rounded" src="~/Images/blackCard.png" />
                                     <figcaption class="figure-caption">Daj protivniku 10 poena.</figcaption>
                                 </figure>
-                            </div>*@
-                            @*<img src="~/Images/Igra1.jpg" alt="Uvod" class="slideTutorial" />*@
+                            </div>
+                            <div data-bind="if: isImageDisplayed1(), click: changeIsImageDisplayed1">
+                                <img src="~/Images/Igra1.jpg" alt="Uvod" class="slideTutorial" />
+                            </div>
                         </div>
                         <!-- /ko -->
                         <!-- ko if: gameNumber() == 2 -->
                         <div class="tab-pane active" role="tabpanel" id="step2">
                             <h3>Druga igra - izaberite jednu kartu</h3>
-                            <div class="col-md-4 col-md-offset-4">
+                            <div data-bind="if: !isImageDisplayed2()" class="col-md-4 col-md-offset-4">
                                 <figure data-bind="click: playCard21" class="figure" style="float:left">
                                     <img class="slikaCrvena figure-img img-fluid rounded" src="~/Images/redCard.png" />
                                     <figcaption class="figure-caption">Zadrži za sebe 5 poena.</figcaption>
@@ -82,13 +84,15 @@
                                     <figcaption class="figure-caption">Daj protivniku 10 poena.</figcaption>
                                 </figure>
                             </div>
-                            @*<img src="~/Images/Igra2.jpg" alt="Uvod" class="slideTutorial" />*@
+                            <div data-bind="if: isImageDisplayed2(), click: changeIsImageDisplayed2">
+                                <img src="~/Images/Igra2.jpg" alt="Uvod" class="slideTutorial" />
+                            </div>
                         </div>
                         <!-- /ko -->
                         <!-- ko if: gameNumber() == 3 -->
                         <div class="tab-pane active" role="tabpanel" id="step3">
                             <h3>Treća igra- izaberite jednu kartu</h3>
-                            <div class="col-md-4 col-md-offset-4">
+                            <div data-bind="if: !isImageDisplayed3()" class="col-md-4 col-md-offset-4">
                                 <figure data-bind="click: playCard31" class="figure" style="float:left">
                                     <img class="slikaCrvena figure-img img-fluid rounded" src="~/Images/redCard.png" />
                                     <figcaption class="figure-caption">Niko ne dobija poene.</figcaption>
@@ -98,13 +102,15 @@
                                     <figcaption class="figure-caption">Daj protivniku 10 poena.</figcaption>
                                 </figure>
                             </div>
-                            @*<img src="~/Images/Igra3.jpg" alt="Uvod" class="slideTutorial" />*@
+                            <div data-bind="if: isImageDisplayed3(), click: changeIsImageDisplayed3">
+                                <img src="~/Images/Igra3.jpg" alt="Uvod" class="slideTutorial" />
+                            </div>
                         </div>
                         <!-- /ko -->
                         <!-- ko if: gameNumber() == 4 -->
                         <div class="tab-pane active" role="tabpanel" id="step4">
                             <h3>Četvrta igra- izaberite jednu kartu (ulog je ocena na ispitu)</h3>
-                            <div class="col-md-4 col-md-offset-4">
+                            <div data-bind="if: !isImageDisplayed4()" class="col-md-4 col-md-offset-4">
                                 <figure data-bind="click: playCard41" class="figure" style="float:left">
                                     <img class="slikaCrvena figure-img img-fluid rounded" src="~/Images/redCard.png" />
                                     <figcaption class="figure-caption">Zadrži za sebe 5 poena.</figcaption>
@@ -114,7 +120,27 @@
                                     <figcaption class="figure-caption">Daj protivniku 10 poena.</figcaption>
                                 </figure>
                             </div>
-                            @*<img src="~/Images/Igra4.jpg" alt="Uvod" class="slideTutorial" />*@
+                            <div data-bind="if: isImageDisplayed4(), click: changeIsImageDisplayed4">
+                                <img src="~/Images/Igra4.jpg" alt="Uvod" class="slideTutorial" />
+                            </div>
+                        </div>
+                        <!-- /ko -->
+                        <!-- ko if: gameNumber() == 6 -->
+                        <div class="tab-pane active" role="tabpanel" id="step2">
+                            <h3>Peta igra - izaberite jednu kartu</h3> <span data-bind="text: game5NumberOfPlay"></span>
+                            <div data-bind="if: !isImageDisplayed2()" class="col-md-4 col-md-offset-4">
+                                <figure data-bind="click: playCard51" class="figure" style="float:left">
+                                    <img class="slikaCrvena figure-img img-fluid rounded" src="~/Images/redCard.png" />
+                                    <figcaption class="figure-caption">Zadrži za sebe 5 poena.</figcaption>
+                                </figure>
+                                <figure data-bind="click: playCard52" class="figure" style="float:right">
+                                    <img class="slikaCrna figure-img img-fluid rounded" src="~/Images/blackCard.png" />
+                                    <figcaption class="figure-caption">Daj protivniku 10 poena.</figcaption>
+                                </figure>
+                            </div>
+                            <div data-bind="if: isImageDisplayed2(), click: changeIsImageDisplayed2">
+                                <img src="~/Images/Igra2.jpg" alt="Uvod" class="slideTutorial" />
+                            </div>
                         </div>
                         <!-- /ko -->
                         <div class="clearfix"></div>
@@ -126,12 +152,20 @@
                 <span class="centeredText" style="font-size: large;">Čekanje na protivnika...</span>
             </div>
         </section>
-        
+
         <div>
             <h2 style="color:white">Rezultat</h2>
             <!-- ko if: gameNumber() == 5 -->
             <h2 style="color:white"><i class="glyphicon glyphicon-hand-right"></i> Pobednik je - <span data-bind="text: winner"></span>!!! <i class="glyphicon glyphicon-hand-left"></i></h2>
             <!-- /ko -->
+            <!-- ko if: gameNumber() > 6 -->
+            <h2 style="color:white"><i class="glyphicon glyphicon-hand-right"></i> Pobednik pete igre je - <span data-bind="text: winnerGame5"></span>!!! <i class="glyphicon glyphicon-hand-left"></i></h2>
+            <img src="~/Images/Slide7.jpg" alt="Uvod" class="slideTutorial" />
+            <img src="~/Images/Slide8.jpg" alt="Uvod" class="slideTutorial" />
+            <button class="btn btn-primary" style="float: right" data-bind="click: downloadFile">Export u Excel</button>
+            <button class="btn btn-primary" style="float: left" data-bind="click: backToTutorial">Nazad na početak</button>
+            <!-- /ko -->
+            <!-- ko if: gameNumber() < 6 -->
             <table class="table">
                 <thead>
                     <tr>
@@ -162,9 +196,49 @@
                     </tr>
                 </tbody>
             </table>
+            <!-- /ko -->
+            <!-- ko if: gameNumber() > 5 -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col" class="levaDesnaBordura">Prva etapa</th>
+                        <th scope="col" class="levaDesnaBordura">Druga etapa</th>
+                        <th scope="col" class="levaDesnaBordura">Treća etapa</th>
+                        <th scope="col" class="levaDesnaBordura">Četvrta etapa</th>
+                        <th scope="col" class="levaDesnaBordura">Peta etapa</th>
+                        <th scope="col">Ukupno</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row"><span data-bind="text: myFullName"></span></th>
+                        <td class="rucnoCrtano"><span data-bind="text: myPoints51"></span></td>
+                        <td class="rucnoCrtano"><span data-bind="text: myPoints52"></span></td>
+                        <td class="rucnoCrtano"><span data-bind="text: myPoints53"></span></td>
+                        <td class="rucnoCrtano"><span data-bind="text: myPoints54"></span></td>
+                        <td class="rucnoCrtano"><span data-bind="text: myPoints55"></span></td>
+                        <td class="levaBorduraBold"><span data-bind="text: myPoints51() + myPoints52() + myPoints53() + myPoints54()+ myPoints55()"></span></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><span data-bind="text: opponentName"></span></th>
+                        <td class="levaDesnaBordura"><span data-bind="text: opponentPoints51"></span></td>
+                        <td class="levaDesnaBordura"><span data-bind="text: opponentPoints52"></span></td>
+                        <td class="levaDesnaBordura"><span data-bind="text: opponentPoints53"></span></td>
+                        <td class="levaDesnaBordura"><span data-bind="text: opponentPoints54"></span></td>
+                        <td class="levaDesnaBordura"><span data-bind="text: opponentPoints55"></span></td>
+                        <td class="levaBorduraBold"><span data-bind="text: opponentPoints51() + opponentPoints52() + opponentPoints53() + opponentPoints54() + opponentPoints55()"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- /ko -->
+            <!-- ko if: gameNumber() == 5 -->
+            <button class="btn btn-primary" data-bind="click: goToFifthGame">Idi na petu igru</button>
+            <!-- /ko -->
+
         </div>
 
-        <button style="display:none" data-bind="click: checkForOpponent()"  ></button>
+        <button style="display:none" data-bind="click: checkForOpponent()"></button>
 
     </div>
 </div>

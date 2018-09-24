@@ -69,6 +69,10 @@
     window.location.href = "game/download";
   };
 
+  self.backToTutorial = function () {
+    window.location.href = "/tutorial";
+  };
+
   // tutorial
   self.gotoGame = function () {
     window.location.href = "/game";
@@ -109,6 +113,10 @@
   self.opponentName = ko.observable('???');
   self.opponentPoints1 = ko.observable(0);
   self.myPoints1 = ko.observable(0);
+  self.isImageDisplayed1 = ko.observable(true);
+  self.changeIsImageDisplayed1 = function () {
+    self.isImageDisplayed1(false);
+  };
 
   var playCard1 = function (cardNumber) {
     var callback = function (serverResponse, opponentName, opponentPoints, myPoints) {
@@ -146,6 +154,10 @@
   // igra 2
   self.opponentPoints2 = ko.observable(0);
   self.myPoints2 = ko.observable(0);
+  self.isImageDisplayed2 = ko.observable(true);
+  self.changeIsImageDisplayed2 = function () {
+    self.isImageDisplayed2(false);
+  };
 
   var playCard2 = function (cardNumber) {
     var callback = function (serverResponse, opponentPoints, myPoints) {
@@ -181,6 +193,10 @@
   // igra 3
   self.opponentPoints3 = ko.observable(0);
   self.myPoints3 = ko.observable(0);
+  self.isImageDisplayed3 = ko.observable(true);
+  self.changeIsImageDisplayed3 = function () {
+    self.isImageDisplayed3(false);
+  };
 
   var playCard3 = function (cardNumber) {
     var callback = function (serverResponse, opponentPoints, myPoints) {
@@ -217,6 +233,10 @@
   self.opponentPoints4 = ko.observable(0);
   self.myPoints4 = ko.observable(0);
   self.winner = ko.observable('');
+  self.isImageDisplayed4 = ko.observable(true);
+  self.changeIsImageDisplayed4 = function () {
+    self.isImageDisplayed4(false);
+  };
 
   var playCard4 = function (cardNumber) {
     var callback = function (serverResponse, opponentPoints, myPoints) {
@@ -258,6 +278,135 @@
         self.winner(self.opponentName());
       }
       localStorage.removeItem("gameId");
+    }
+  };
+
+  self.goToFifthGame = function () {
+    var callback = function (serverResponse, gameId) {
+      if (serverResponse == 'success') {
+        self.gameNumber(6);
+        self.opponentName('???');
+        localStorage.setItem("gameId", gameId);
+      } else {
+        self.displayLoader(true);
+      }
+    };
+    self.myFullName(localStorage.getItem("fullName"));
+    serverProxy.checkForOpponent2(callback);
+  };
+
+  $.connection.tasks.client.tellOpponentThatGameIsCreated2 = function (receiver, gameId) {
+    if (receiver == localStorage.getItem("username")) {
+      localStorage.setItem("gameId", gameId);
+      self.displayLoader(false);
+      self.gameNumber(6);
+    }
+  };
+
+  // igra 5, ali se vodi kao 6 zbog toga sto je peta prikaz rezultata
+  self.opponentPoints51 = ko.observable(0);
+  self.opponentPoints52 = ko.observable(0);
+  self.opponentPoints53 = ko.observable(0);
+  self.opponentPoints54 = ko.observable(0);
+  self.opponentPoints55 = ko.observable(0);
+
+  self.myPoints51 = ko.observable(0);
+  self.myPoints52 = ko.observable(0);
+  self.myPoints53 = ko.observable(0);
+  self.myPoints54 = ko.observable(0);
+  self.myPoints55 = ko.observable(0);
+
+  self.game5NumberOfPlay = ko.observable(1);
+  self.winnerGame5 = ko.observable('');
+  self.isImageDisplayed5 = ko.observable(true);
+  self.changeIsImageDisplayed5 = function () {
+    self.isImageDisplayed5(false);
+  };
+
+  var playCard5 = function (cardNumber) {
+    var callback = function (serverResponse, opponentPoints, myPoints) {
+      if (serverResponse == 'success') {
+        if (self.game5NumberOfPlay() == 1) {
+          self.opponentPoints51(opponentPoints);
+          self.myPoints51(myPoints);
+        }
+        if (self.game5NumberOfPlay() == 2) {
+          self.opponentPoints52(opponentPoints);
+          self.myPoints52(myPoints);
+        }
+        if (self.game5NumberOfPlay() == 3) {
+          self.opponentPoints53(opponentPoints);
+          self.myPoints53(myPoints);
+        }
+        if (self.game5NumberOfPlay() == 4) {
+          self.opponentPoints54(opponentPoints);
+          self.myPoints54(myPoints);
+        }
+        if (self.game5NumberOfPlay() == 5) {
+          self.opponentPoints55(opponentPoints);
+          self.myPoints55(myPoints);
+        }
+
+        self.game5NumberOfPlay(self.game5NumberOfPlay() + 1);
+        self.displayLoader(false);
+        
+        if (self.game5NumberOfPlay() > 5) {
+          self.gameNumber(7); // strana sa proglasenim pobednikom pete igre
+          if ((self.myPoints51() + self.myPoints52() + self.myPoints53() + self.myPoints54() + self.myPoints55()) > (self.opponentPoints51() + self.opponentPoints52() + self.opponentPoints53() + self.opponentPoints54() + self.opponentPoints55())) {
+            self.winnerGame5(self.myFullName());
+          } else {
+            self.winnerGame5(self.opponentName());
+          }
+          localStorage.removeItem("gameId");
+        }
+      } else {
+        self.displayLoader(true);
+      }
+    };
+    serverProxy.playCard5(localStorage.getItem("gameId"), cardNumber, self.game5NumberOfPlay(), callback);
+  };
+
+  self.playCard51 = function () {
+    playCard5(1);
+  };
+
+  self.playCard52 = function () {
+    playCard5(2);
+  };
+
+  $.connection.tasks.client.opponentPlayed5 = function (receiver, opponentPoints, myPoints) {
+    if (receiver == localStorage.getItem("username")) {
+      if (self.game5NumberOfPlay() == 1) {
+        self.opponentPoints51(opponentPoints);
+        self.myPoints51(myPoints);
+      }
+      if (self.game5NumberOfPlay() == 2) {
+        self.opponentPoints52(opponentPoints);
+        self.myPoints52(myPoints);
+      }
+      if (self.game5NumberOfPlay() == 3) {
+        self.opponentPoints53(opponentPoints);
+        self.myPoints53(myPoints);
+      }
+      if (self.game5NumberOfPlay() == 4) {
+        self.opponentPoints54(opponentPoints);
+        self.myPoints54(myPoints);
+      }
+      if (self.game5NumberOfPlay() == 5) {
+        self.opponentPoints55(opponentPoints);
+        self.myPoints55(myPoints);
+      }
+      self.game5NumberOfPlay(self.game5NumberOfPlay() + 1);
+      self.displayLoader(false);
+      if (self.game5NumberOfPlay() > 5) {
+        self.gameNumber(7); // strana sa proglasenim pobednikom pete igre
+        if ((self.myPoints51() + self.myPoints52() + self.myPoints53() + self.myPoints54() + self.myPoints55()) > (self.opponentPoints51() + self.opponentPoints52() + self.opponentPoints53() + self.opponentPoints54() + self.opponentPoints55())) {
+          self.winnerGame5(self.myFullName());
+        } else {
+          self.winnerGame5(self.opponentName());
+        }
+        localStorage.removeItem("gameId");
+      }
     }
   };
 
