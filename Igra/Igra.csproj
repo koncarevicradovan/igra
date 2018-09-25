@@ -316,6 +316,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\blackCard.png" />
+    <Content Include="Images\Igra1.JPG" />
+    <Content Include="Images\Igra2.JPG" />
+    <Content Include="Images\Igra3.JPG" />
+    <Content Include="Images\Igra4.JPG" />
+    <Content Include="Images\Igra5.JPG" />
     <Content Include="Images\redCard.png" />
     <Content Include="Images\Slide1.JPG" />
     <Content Include="Images\Slide2.JPG" />
@@ -324,6 +329,7 @@
     <Content Include="Images\Slide5.JPG" />
     <Content Include="Images\Slide6.JPG" />
     <Content Include="Images\Slide7.JPG" />
+    <Content Include="Images\Slide8.JPG" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -350,6 +356,7 @@
     </Content>
     <Content Include="Content\ExcelTemplate.xlsx" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
+    <None Include="Properties\PublishProfiles\Deployu.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
